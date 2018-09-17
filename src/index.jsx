@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 import ReactDOM from "react-dom";
 
-import style from './style.css'
+import style from './style.css';
 
 class App extends React.Component{
     render(){
@@ -10,7 +10,7 @@ class App extends React.Component{
                 <h1 className={style.main}>Checkers Web App</h1>
                 <h3>coming soon...</h3>
             </div>
-        )
+        );
     }
 }
 
