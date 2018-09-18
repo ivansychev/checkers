@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from "react-dom";
 
 import style from './style.css';
 
-class App extends React.Component{
+const stl = { display: "flex" }
+
+class App extends Component{
     render(){
         return(
             <div className={style.container}>
-                <h1 className={style.main}>Checkers Web App</h1>
-                <h3>coming soon...</h3>
+                Checkers are coming soon...
+                <div className={style.main}>
+                    by Ivan Sychev
+                </div>
             </div>
-        );
+
+        )
     }
 }
 

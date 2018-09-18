@@ -1,7 +1,8 @@
 .container{
     background-color: beige;
 
-    &.main{
+    .main{
+        background-color: lightpink;
         color: darkblue;
      }
 }
