@@ -33,9 +33,11 @@ function animate(){
 /* optimize by comparing to previous values */
 
 function redrawBoard(ctx){
-    if(MOUSE.x === 0 && MOUSE.y === 0) return;
+    if(MOUSE.x === 0 && MOUSE.y === 0 || MOUSE.x < 0 || MOUSE.y < 0) return;
     const x = Math.floor(MOUSE.x/CELL_SIDE);
     const y = Math.floor(MOUSE.y/CELL_SIDE);
+    console.log(`Mouse position x:${MOUSE.x}, y:${MOUSE.y}`)
+    console.log(CELLS)
     const cell = CELLS[x][y];
     ctx.clearRect(x * CELL_SIDE, y * CELL_SIDE, CELL_SIDE, CELL_SIDE)
     cell.selected = true
@@ -43,7 +45,7 @@ function redrawBoard(ctx){
 }
 
 function redrawPiecies(ctx){
-    if(MOUSE.x === 0 && MOUSE.y === 0) return;
+    if(MOUSE.x === 0 && MOUSE.y === 0 || MOUSE.x < 0 || MOUSE.y < 0) return;
     const x = Math.floor(MOUSE.x/CELL_SIDE);
     const y = Math.floor(MOUSE.y/CELL_SIDE);
     const piece = PIECES[x][y];
