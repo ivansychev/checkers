@@ -1,8 +1,5 @@
-.container{
-    background-color: beige;
-
-    .main{
-        background-color: lightpink;
-        color: darkblue;
-     }
+html{
+  height: 100%;
+  background-image: linear-gradient(to top, #9890e3 0%, #b1f4cf 100%);
+  background-size: cover;
 }
