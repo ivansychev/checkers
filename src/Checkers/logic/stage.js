@@ -28,7 +28,7 @@ export const RADIUS = 20;
 export function drawBoard(ctx){
     CELLS.forEach((row, i) => {
         row.forEach((val, j, self) => {
-            const cell = new Cell(i * 50, j * 50, 50, 50, val, 'aqua', false);
+            const cell = new Cell(j * 50, i * 50, 50, 50, val, 'aqua', false);
             self[j] = cell;
             cell.drawSelf(ctx);
         })

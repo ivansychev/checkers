@@ -36,7 +36,7 @@ function redrawBoard(ctx){
     if(MOUSE.x === 0 && MOUSE.y === 0 || MOUSE.x < 0 || MOUSE.y < 0) return;
     const x = Math.floor(MOUSE.x/CELL_SIDE);
     const y = Math.floor(MOUSE.y/CELL_SIDE);
-    const cell = CELLS[x][y];
+    const cell = CELLS[y][x];
     ctx.clearRect(x * CELL_SIDE, y * CELL_SIDE, CELL_SIDE, CELL_SIDE)
     cell.selected = true
     cell.drawSelf(ctx)
@@ -46,7 +46,8 @@ function redrawPiecies(ctx){
     if(MOUSE.x === 0 && MOUSE.y === 0 || MOUSE.x < 0 || MOUSE.y < 0) return;
     const x = Math.floor(MOUSE.x/CELL_SIDE);
     const y = Math.floor(MOUSE.y/CELL_SIDE);
-    const piece = PIECES[x][y];
+    console.log(PIECES, x, y)
+    const piece = PIECES[y][x];
     if(piece !== 0){
         piece.selected = true
         piece.drawSelf(ctx)
