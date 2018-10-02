@@ -22,8 +22,8 @@ export const cellStyles = {
     0: {
         themes: {
             aqua:{
-                fillStyle : "rgba(255, 255, 255, 0.7)",
-                selectedStyle: "rgba(248, 238, 175, 1)"
+                fillStyle : "rgba(255, 255, 255, 0.75)",
+                selectedStyle:  "rgba(255, 255, 255, 0.5)"
             }
         }
     },
@@ -32,7 +32,7 @@ export const cellStyles = {
         themes: {
             aqua:{
                 fillStyle : "rgba(0,53,107,1)",
-                selectedStyle: "rgba(248, 238, 175, 1)"
+                selectedStyle: "rgba(0,53,107,0.5)"
             }
         }
     }

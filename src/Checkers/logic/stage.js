@@ -35,7 +35,7 @@ export function drawBoard(ctx){
     })
 }
 
-export function drawPiecies(ctx){
+export function drawPieces(ctx){
     PIECES.forEach((row, i) => {
         row.forEach((val, j, self) => {
             if(val !== 0){
