@@ -23,7 +23,7 @@ export const cellStyles = {
         themes: {
             aqua:{
                 fillStyle : "rgba(255, 255, 255, 0.75)",
-                selectedStyle:  "rgba(255, 255, 255, 0.5)"
+                hoveredStyle:  "rgba(255, 255, 255, 0.5)",
             }
         }
     },
@@ -32,7 +32,8 @@ export const cellStyles = {
         themes: {
             aqua:{
                 fillStyle : "rgba(0,53,107,1)",
-                selectedStyle: "rgba(0,53,107,0.5)"
+                hoveredStyle: "rgba(0,53,107,0.5)",
+                selectedStyle: "rgba(236, 229, 135, 0.9)"
             }
         }
     }

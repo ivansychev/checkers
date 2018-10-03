@@ -4,12 +4,13 @@ const PI = Math.PI
 
 export default class Piece{
 
-    constructor(x, y, side, theme, radius, selected){
+    constructor(x, y, side, theme, radius, hovered, selected){
         this.x = x;
         this.y = y;
         this.side = side;
         this.theme = theme;
         this.radius = radius;
+        this.hovered = hovered;
         this.selected = selected;
     }
 

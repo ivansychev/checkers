@@ -10,6 +10,7 @@ export default class CanvasComponent extends React.Component{
         super()
 
         this.getMousePos = this.getMousePos.bind(this)
+        this.handleClick = this.handleClick.bind(this)
     }
 
     componentDidMount(){
@@ -25,6 +26,10 @@ export default class CanvasComponent extends React.Component{
         MOUSE.y = e.clientY - rect.top;
     }
 
+    handleClick(e){
+
+    }
+
     render(){
         return(
             <canvas
@@ -32,6 +37,7 @@ export default class CanvasComponent extends React.Component{
                 width={400}
                 height={400}
                 onMouseMove={this.getMousePos}
+                onClick={this.handleClick}
             />
         )
     }
