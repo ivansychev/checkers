@@ -44,7 +44,6 @@ export function pieceSelectionRoutine(){
 }
 
 function removeSelectedCell(){
-    console.log(CACHE.selected.y, CACHE.selected.x)
     if(CACHE.selected.y || CACHE.selected.x){
         if(!utils.isEmptyCacheSelectedCell()){
             const cell = CELLS[CACHE.selected.y][CACHE.selected.x];
