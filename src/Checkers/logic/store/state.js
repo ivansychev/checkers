@@ -10,8 +10,12 @@ export const CACHE = {
         y: 0
     },
     selected:{
-        x: 0,
-        y: 0
+        x: null,
+        y: null
+    },
+    clicked:{
+        x: null,
+        y: null
     }
 }
 

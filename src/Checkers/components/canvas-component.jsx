@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { launchGame, pieceSelectionRoutine, pieceHoverRoutine } from "../logic/game/game"
-import { MOUSE } from "../logic/store/state"
+import { launchGame, pieceSelectionRoutine, pieceHoverRoutine, pieceMovementRoutine } from "../logic/game/game"
+import { MOUSE, CACHE } from "../logic/store/state"
 import * as utils from "../logic/game/utils"
 
 export let CXT, C;
@@ -32,7 +32,9 @@ export default class CanvasComponent extends React.Component{
     }
 
     handleClick(){
+        utils.updateCacheClicked(MOUSE.x, MOUSE.y)
         pieceSelectionRoutine()
+        pieceMovementRoutine()
     }
 
     render(){

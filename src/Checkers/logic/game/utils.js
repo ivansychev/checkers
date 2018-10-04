@@ -20,8 +20,12 @@ export function isCacheCoordsInitialized(){
     return !(CACHE.coords.y === 0 && CACHE.coords.x === 0);
 }
 
-export function isEmptyCacheSelectedCell(){
-    return (CACHE.selected.y === 0 && CACHE.selected.x === 0);
+export function isCacheSelectedInitialized(){
+    return (CACHE.selected.y !== null && CACHE.selected.x !== null);
+}
+
+export function isClickingCellToMovePiece(){
+    return (CACHE.selected.y !== CACHE.clicked.y || CACHE.selected.x !== CACHE.clicked.x)
 }
 
 export function updateCacheMouse(x, y){
@@ -42,4 +46,14 @@ export function updateCoords(x, y){
 export function updateCacheSelected(x, y) {
     CACHE.selected.x = Math.floor(x/CELL_SIDE);
     CACHE.selected.y = Math.floor(y/CELL_SIDE);
+}
+
+export function updateCacheClicked(x, y) {
+    CACHE.clicked.x = Math.floor(x/CELL_SIDE);
+    CACHE.clicked.y = Math.floor(y/CELL_SIDE);
+}
+
+export function resetCacheSelected() {
+    CACHE.selected.x = null;
+    CACHE.selected.y = null;
 }
