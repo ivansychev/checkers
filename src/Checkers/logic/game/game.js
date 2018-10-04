@@ -20,9 +20,6 @@ function startGame(){
 
 function animate(){
 
-    /* animate logic */
-    //console.log(`Mouse position x:${MOUSE.x}, y:${MOUSE.y}`)
-
     if(!utils.isMouseOutsideCanvas()){
         draw(CXT)
     }
@@ -60,7 +57,9 @@ function removeSelectedPiece(){
     if(CACHE.selected.y || CACHE.selected.x) {
         if(!utils.isEmptyCacheSelectedCell()){
             const piece = PIECES[CACHE.selected.y][CACHE.selected.x];
-            piece.selected = false
+            if(piece){
+                piece.selected = false
+            }
         }
     }
 }

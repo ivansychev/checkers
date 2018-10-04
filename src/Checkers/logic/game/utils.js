@@ -17,7 +17,7 @@ export function isEmptyCell(){
 }
 
 export function isEmptyCacheSelectedCell(){
-    return ![CACHE.selected.y][CACHE.selected.x];
+    return (CACHE.selected.y === 0 && CACHE.selected.x === 0);
 }
 
 export function updateCacheMouse(x, y){
