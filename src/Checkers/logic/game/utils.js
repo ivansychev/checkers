@@ -16,6 +16,10 @@ export function isEmptyCell(){
     return !PIECES[COORDS.y][COORDS.x];
 }
 
+export function isCacheCoordsInitialized(){
+    return !(CACHE.coords.y === 0 && CACHE.coords.x === 0);
+}
+
 export function isEmptyCacheSelectedCell(){
     return (CACHE.selected.y === 0 && CACHE.selected.x === 0);
 }

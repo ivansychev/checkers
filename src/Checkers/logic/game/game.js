@@ -84,25 +84,33 @@ export function pieceHoverRoutine(){
 }
 
 function setHoveredCell(){
-    const cell = CELLS[COORDS.y][COORDS.x];
-    cell.hovered = true
-    if(COORDS.x !== CACHE.coords.x || COORDS.y !== CACHE.coords.y){
-        const cacheCell = CELLS[CACHE.coords.y][CACHE.coords.x];
-        cacheCell.hovered = false
-    }
+    if(utils.hasMouseMoved())
+        if(utils.hasCoordsChanged())
+        {
+            const cell = CELLS[COORDS.y][COORDS.x];
+            cell.hovered = true
+
+            if(utils.isCacheCoordsInitialized()){
+                const cacheCell = CELLS[CACHE.coords.y][CACHE.coords.x];
+                cacheCell.hovered = false
+            }
+        }
 }
 
 function setHoveredPiece(){
-    const piece = PIECES[COORDS.y][COORDS.x];
-    if(piece !== 0){
-        piece.hovered = true
-    }
+    if(utils.hasMouseMoved())
+        if(utils.hasCoordsChanged())
+        {
+            const piece = PIECES[COORDS.y][COORDS.x];
+            if(piece !== 0){
+                piece.hovered = true
+            }
 
-    const cachePiece = PIECES[CACHE.coords.y][CACHE.coords.x];
-    if(COORDS.x !== CACHE.coords.x || COORDS.y !== CACHE.coords.y){
-        if(cachePiece !== 0){
-            cachePiece.hovered = false
+            if(utils.isCacheCoordsInitialized()){
+                const cachePiece = PIECES[CACHE.coords.y][CACHE.coords.x];
+                if(cachePiece !== 0){
+                    cachePiece.hovered = false
+                }
+            }
         }
-    }
-
 }
