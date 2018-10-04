@@ -15,12 +15,14 @@ export default class Cell{
     drawSelf(ctx){
         const style = cellStyles[this.cellType].themes[this.theme];
 
+        ctx.fillStyle = style.fillStyle
+
         if(this.hovered){
             ctx.fillStyle = style.hoveredStyle
-        }else if(this.selected){
+        }
+
+        if(this.selected){
             ctx.fillStyle = style.selectedStyle
-        }else{
-            ctx.fillStyle = style.fillStyle
         }
 
         ctx.fillRect(this.x, this.y, this.w, this.h);

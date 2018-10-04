@@ -4,7 +4,7 @@ import { launchGame, pieceSelectionRoutine, pieceHoverRoutine } from "../logic/g
 import { MOUSE } from "../logic/store/state"
 import * as utils from "../logic/game/utils"
 
-export let CXT;
+export let CXT, C;
 
 export default class CanvasComponent extends React.Component{
 
@@ -16,8 +16,8 @@ export default class CanvasComponent extends React.Component{
     }
 
     componentDidMount(){
-        const canvas = this.refs.canvas;
-        CXT = canvas.getContext('2d');
+        C = this.refs.canvas;
+        CXT = C.getContext('2d');
         launchGame()
     }
 
