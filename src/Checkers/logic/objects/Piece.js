@@ -1,4 +1,4 @@
-import { pieceStyles } from "./styles.js"
+import { pieceStyles } from "../store/styles.js"
 
 const PI = Math.PI
 

@@ -1,6 +1,8 @@
 import React from 'react'
 
-import { launchGame, MOUSE, COORDS, pieceSelectionRoutine, pieceHoverRoutine, updateCoords} from "../logic/game"
+import { launchGame, pieceSelectionRoutine, pieceHoverRoutine } from "../logic/game/game"
+import { MOUSE } from "../logic/store/state"
+import * as utils from "../logic/game/utils"
 
 export let CXT;
 
@@ -24,7 +26,7 @@ export default class CanvasComponent extends React.Component{
         let rect = canvas.getBoundingClientRect();
         MOUSE.x = e.clientX - rect.left;
         MOUSE.y = e.clientY - rect.top;
-        updateCoords(MOUSE.x, MOUSE.y)
+        utils.updateCoords(MOUSE.x, MOUSE.y)
 
         pieceHoverRoutine()
     }

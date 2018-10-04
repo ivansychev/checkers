@@ -1,4 +1,4 @@
-import { cellStyles } from "./styles"
+import { cellStyles } from "../store/styles"
 
 export default class Cell{
     constructor(x, y, w, h, cellType, theme, hovered, selected){
