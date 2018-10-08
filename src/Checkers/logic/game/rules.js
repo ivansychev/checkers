@@ -11,5 +11,6 @@ export function movePiece(){
         PIECES[CACHE.selected.y][CACHE.selected.x] = 0;
         PIECES[CACHE.clicked.y][CACHE.clicked.x] = piece;
         utils.resetCacheSelected()
+        utils.toggleTurn()
     }
 }

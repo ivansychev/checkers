@@ -40,9 +40,8 @@ export function pieceSelectionRoutine(){
     if(utils.isBlackCell()){
         removeSelectedCell()
         removeSelectedPiece()
-        //utils.resetCacheSelected()
     }
-    if(!utils.isEmptyCell()){
+    if(!utils.isEmptyCell() && utils.isPlayersTurn()){
         setSelectedCell()
         setSelectedPiece()
         utils.updateCacheSelected(MOUSE.x, MOUSE.y)

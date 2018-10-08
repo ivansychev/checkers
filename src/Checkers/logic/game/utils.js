@@ -28,6 +28,27 @@ export function isClickingCellToMovePiece(){
     return (CACHE.selected.y !== CACHE.clicked.y || CACHE.selected.x !== CACHE.clicked.x)
 }
 
+export function isBlackCell(){
+    return CELLS[CACHE.clicked.y][CACHE.clicked.x].cellType !== 0
+}
+
+export function getClickedPiece(){
+    return PIECES[CACHE.clicked.y][CACHE.clicked.x]
+}
+
+export function getPieceColor(piece){
+    return piece.side === 1 ? 'white' : 'black'
+}
+
+export function getTurnColor(){
+    return CACHE.turn
+}
+
+export function isPlayersTurn(){
+    console.log(getTurnColor(), getPieceColor(getClickedPiece()))
+    return getTurnColor() === getPieceColor(getClickedPiece());
+}
+
 export function updateCacheMouse(x, y){
     CACHE.mouse.x = x;
     CACHE.mouse.y = y;
@@ -57,7 +78,6 @@ export function resetCacheSelected() {
     CACHE.selected.x = null;
     CACHE.selected.y = null;
 }
-
-export function isBlackCell(){
-    return CELLS[CACHE.clicked.y][CACHE.clicked.x].cellType !== 0
+export function toggleTurn() {
+    CACHE.turn = CACHE.turn === 'white' ? 'black' : 'white'
 }

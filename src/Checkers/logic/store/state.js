@@ -16,7 +16,8 @@ export const CACHE = {
     clicked:{
         x: null,
         y: null
-    }
+    },
+    turn: 'white'
 }
 
 export const PIECES = [ [0,2,0,2,0,2,0,2],
