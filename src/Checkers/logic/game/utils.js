@@ -1,4 +1,4 @@
-import {CACHE, CELL_SIDE, COORDS, MOUSE, PIECES} from "../store/state";
+import {CACHE, CELL_SIDE, CELLS, COORDS, MOUSE, PIECES} from "../store/state";
 
 export function hasCoordsChanged(){
     return (COORDS.x !== CACHE.coords.x || COORDS.y !== CACHE.coords.y)
@@ -56,4 +56,8 @@ export function updateCacheClicked(x, y) {
 export function resetCacheSelected() {
     CACHE.selected.x = null;
     CACHE.selected.y = null;
+}
+
+export function isBlackCell(){
+    return CELLS[CACHE.clicked.y][CACHE.clicked.x].cellType !== 0
 }

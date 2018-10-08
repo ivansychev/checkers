@@ -37,8 +37,11 @@ function animate(){
 }
 
 export function pieceSelectionRoutine(){
-    removeSelectedCell()
-    removeSelectedPiece()
+    if(utils.isBlackCell()){
+        removeSelectedCell()
+        removeSelectedPiece()
+        //utils.resetCacheSelected()
+    }
     if(!utils.isEmptyCell()){
         setSelectedCell()
         setSelectedPiece()

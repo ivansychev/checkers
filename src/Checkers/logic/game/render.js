@@ -13,7 +13,7 @@ function redrawBoard(ctx){
             val.drawSelf(ctx)
         })
     })
-    console.log('redrawBoard')
+    //console.log('redrawBoard')
 }
 
 function redrawPieces(ctx){
@@ -24,5 +24,5 @@ function redrawPieces(ctx){
             }
         })
     })
-    console.log('redrawPiecies')
+    //console.log('redrawPiecies')
 }
