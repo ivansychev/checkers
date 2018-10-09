@@ -24,7 +24,7 @@ export function isCacheSelectedInitialized(){
     return (CACHE.selected.y !== null && CACHE.selected.x !== null);
 }
 
-export function isClickingCellToMovePiece(){
+export function isSelectedDifferentToClicked(){
     return (CACHE.selected.y !== CACHE.clicked.y || CACHE.selected.x !== CACHE.clicked.x)
 }
 

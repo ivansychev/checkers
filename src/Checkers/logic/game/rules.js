@@ -2,7 +2,7 @@ import { CACHE, PIECES, CELLS } from "../store/state";
 import * as utils from './utils'
 
 export function movePiece(){
-    if(utils.isClickingCellToMovePiece()
+    if(utils.isSelectedDifferentToClicked()
         && utils.isCacheSelectedInitialized()
     && utils.isBlackCell()){
         const piece = PIECES[CACHE.selected.y][CACHE.selected.x];
