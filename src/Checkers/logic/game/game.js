@@ -37,7 +37,7 @@ function animate(){
 }
 
 export function pieceSelectionRoutine(){
-    if(utils.isBlackCell()){
+    if(utils.isBlackCell() && utils.isPlayersTurn()){
         removeSelectedCell()
         removeSelectedPiece()
     }
@@ -47,15 +47,13 @@ export function pieceSelectionRoutine(){
         utils.updateCacheSelected(MOUSE.x, MOUSE.y)
     }
 }
-
-function removeSelectedCell(){
+ function removeSelectedCell(){
     if(utils.isCacheSelectedInitialized()){
         const cell = CELLS[CACHE.selected.y][CACHE.selected.x];
         cell.selected = false
     }
 }
-
-function removeSelectedPiece(){
+ function removeSelectedPiece(){
     if(utils.isCacheSelectedInitialized()){
         const piece = PIECES[CACHE.selected.y][CACHE.selected.x];
         if(piece){
@@ -113,4 +111,9 @@ function setHoveredPiece(){
 
 export function pieceMovementRoutine(){
     movePiece()
+}
+
+export function removeSelectedCellAndPiece(){
+    removeSelectedCell()
+    removeSelectedPiece()
 }

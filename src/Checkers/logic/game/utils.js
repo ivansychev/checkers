@@ -37,7 +37,11 @@ export function getClickedPiece(){
 }
 
 export function getPieceColor(piece){
-    return piece.side === 1 ? 'white' : 'black'
+    switch (piece.side) {
+        case 1: return 'white'
+        case 2: return 'black'
+        default: return null
+    }
 }
 
 export function getTurnColor(){
@@ -45,7 +49,7 @@ export function getTurnColor(){
 }
 
 export function isPlayersTurn(){
-    console.log(getTurnColor(), getPieceColor(getClickedPiece()))
+    console.log('CLR', getPieceColor(getClickedPiece()))
     return getTurnColor() === getPieceColor(getClickedPiece());
 }
 
