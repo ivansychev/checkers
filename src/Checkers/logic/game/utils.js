@@ -12,7 +12,8 @@ export function isMouseOutsideCanvas(){
     return (MOUSE.x === 0 && MOUSE.y === 0 || MOUSE.x < 0 || MOUSE.y < 0)
 }
 
-export function isEmptyCell(){
+export function isEmptyCell(x, y){
+    if(x && y) return !PIECES[y][x];
     return !PIECES[COORDS.y][COORDS.x];
 }
 
@@ -48,9 +49,13 @@ export function getTurnColor(){
     return CACHE.turn
 }
 
-export function isPlayersTurn(){
-    console.log('CLR', getPieceColor(getClickedPiece()))
+export function isPlayersPiece(){
     return getTurnColor() === getPieceColor(getClickedPiece());
+}
+
+export function isOpponentsPiece(){
+    if(getPieceColor(getClickedPiece())) return false;
+    return getTurnColor() !== getPieceColor(getClickedPiece());
 }
 
 export function updateCacheMouse(x, y){

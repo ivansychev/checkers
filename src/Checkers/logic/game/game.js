@@ -37,11 +37,11 @@ function animate(){
 }
 
 export function pieceSelectionRoutine(){
-    if(utils.isBlackCell() && utils.isPlayersTurn()){
+    if(utils.isBlackCell() && utils.isPlayersPiece()){
         removeSelectedCell()
         removeSelectedPiece()
     }
-    if(!utils.isEmptyCell() && utils.isPlayersTurn()){
+    if(!utils.isEmptyCell() && utils.isPlayersPiece()){
         setSelectedCell()
         setSelectedPiece()
         utils.updateCacheSelected(MOUSE.x, MOUSE.y)
