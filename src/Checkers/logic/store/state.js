@@ -42,4 +42,5 @@ export const CELLS = [  [0,1,0,1,0,1,0,1],
 ]
 
 export const CELL_SIDE = 50;
+export const HALF_CELLS_SIDE = 25;
 export const RADIUS = 20;
