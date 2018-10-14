@@ -31,7 +31,7 @@ const LEGAL_MOVES = [];
 
 export function legalMove(piece, x, y, dx, dy){
     //shoudEatPiece(piece, x, y, dx, dy);
-    isMovingLegally(x, y, dx, dy);
+    return isMovingLegally(x, y, dx, dy);
 }
 
 export function isMovingLegally(x, y, dx, dy){
