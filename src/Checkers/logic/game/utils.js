@@ -90,3 +90,11 @@ export function resetCacheSelected() {
 export function toggleTurn() {
     CACHE.turn = CACHE.turn === 'white' ? 'black' : 'white'
 }
+
+export function initLegalMoves() {
+    PIECES.forEach((row) => {
+        row.forEach((value) => {
+            if(value) value.fillLegalMoves()
+        })
+    })
+}

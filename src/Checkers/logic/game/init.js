@@ -1,6 +1,7 @@
 import Piece from '../objects/Piece.js'
 import Cell from '../objects/Cell.js'
 import { CELLS, PIECES, CELL_SIDE, HALF_CELLS_SIDE ,RADIUS } from "../store/state";
+import * as utils from "./utils";
 
 export function drawBoard(ctx){
     CELLS.forEach((row, i) => {
@@ -32,12 +33,18 @@ export function drawPieces(ctx){
                     'aqua',
                     RADIUS,
                     false,
-                    false
+                    false,
+                    j,
+                    i
                 );
                 self[j] = piece;
                 piece.drawSelf(ctx);
             }
         })
     })
+
+    //TODO change logic
+    utils.initLegalMoves()
+    console.log(PIECES)
 }
 
