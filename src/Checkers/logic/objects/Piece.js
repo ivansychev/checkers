@@ -38,43 +38,58 @@ export default class Piece{
         this.shouldMove()
     }
 
+    getSide(){
+        if(this.side === 1) return 'white'
+        if(this.side === 2) return 'black'
+        return null
+    }
+
     shoudEatPiece(){
 
         let x=this.cellX, y=this.cellY, rightPiece, leftPiece, afterRightPiece, afterLeftPiece;
 
-        if(CACHE.turn === 'white' && y>1){
+        console.log('start1--->', x, y)
 
-            if(x<6) rightPiece = PIECES[y-1][x+1]
-            if(rightPiece && CACHE.turn !== rightPiece.side) afterRightPiece = utils.isEmptyCell(y-2, x+2)
+        if(CACHE.turn === this.getSide()){
+            if(this.getSide() === 'white' && y>1){
 
-            if(x>1) leftPiece = PIECES[y-1][x-1]
-            if(leftPiece && CACHE.turn !== leftPiece.side) afterLeftPiece = utils.isEmptyCell(y-2, x-2)
+                if(x<6) rightPiece = PIECES[y-1][x+1]
+                if(rightPiece && this.side !== rightPiece.side) afterRightPiece = utils.isEmptyCell(x+2, y-2)
 
-            if(afterRightPiece){
-                this.legalMoves.push({x: x + 2, y: y - 2})
+                if(x>1) leftPiece = PIECES[y-1][x-1]
+                if(leftPiece && this.side !== leftPiece.side) afterLeftPiece = utils.isEmptyCell(x-2, y-2)
+
+                if(afterRightPiece){
+                    this.legalMoves.push({x: x + 2, y: y - 2})
+                }
+
+                if(afterLeftPiece){
+                    this.legalMoves.push({x: x - 2, y: y - 2})
+                }
+
+                console.log('in1 white left--->', afterLeftPiece)
+                console.log('in1 white right--->', afterRightPiece)
             }
 
-            if(afterLeftPiece){
-                this.legalMoves.push({x: x - 2, y: y - 2})
+            if(this.getSide() === 'black' && y<6){
+
+                if(x<6) rightPiece = PIECES[y+1][x+1]
+                if(rightPiece && this.side !== rightPiece.side) afterRightPiece = utils.isEmptyCell(x+2, y+2)
+
+                if(x>1) leftPiece = PIECES[y+1][x-1]
+                if(leftPiece && this.side !== leftPiece.side) afterLeftPiece = utils.isEmptyCell(x-2, y+2)
+
+                if(afterRightPiece){
+                    this.legalMoves.push({x: x + 2, y: y + 2})
+                }
+
+                if(afterLeftPiece){
+                    this.legalMoves.push({x: x - 2, y: y + 2})
+                }
+
+                console.log('in1 black left--->', afterLeftPiece)
+                console.log('in1 black right--->', afterRightPiece)
             }
-        }
-
-        if(CACHE.turn === 'black' && y<6){
-
-            if(x<6) rightPiece = PIECES[y+1][x+1]
-            if(rightPiece && CACHE.turn !== rightPiece.side) afterRightPiece = utils.isEmptyCell(y+2, x+2)
-
-            if(x>1) leftPiece = PIECES[y+1][x-1]
-            if(leftPiece && CACHE.turn !== leftPiece.side) afterLeftPiece = utils.isEmptyCell(y+2, x-2)
-
-            if(afterRightPiece){
-                this.legalMoves.push({x: x + 2, y: y + 2})
-            }
-
-            if(afterLeftPiece){
-                this.legalMoves.push({x: x - 2, y: y + 2})
-            }
-
         }
     }
 
@@ -82,35 +97,41 @@ export default class Piece{
 
         let x=this.cellX, y=this.cellY, rightPiece, leftPiece;
 
-        if(CACHE.turn === 'white' && y>1){
+        //console.log('start2--->', x, y)
+        if(CACHE.turn === this.getSide()){
+            if(this.getSide() === 'white' && y>0){
 
-            if(x<6) rightPiece = PIECES[y-1][x+1]
+                if(x<7) rightPiece = PIECES[y-1][x+1]
 
-            if(x>1) leftPiece = PIECES[y-1][x-1]
+                if(x>0) leftPiece = PIECES[y-1][x-1]
 
-            if(!rightPiece){
-                this.legalMoves.push({x: x + 1, y: y - 1})
+                if(rightPiece === 0){
+                    this.legalMoves.push({x: x + 1, y: y - 1})
+                }
+
+                if(leftPiece === 0){
+                    this.legalMoves.push({x: x - 1, y: y - 1})
+                }
+
+                //console.log('in2 white--->', x, y, leftPiece === 0, rightPiece === 0)
             }
 
-            if(!leftPiece){
-                this.legalMoves.push({x: x - 1, y: y - 1})
+            if(this.getSide() === 'black' && y<7){
+
+                if(x<7) rightPiece = PIECES[y+1][x+1]
+
+                if(x>0) leftPiece = PIECES[y+1][x-1]
+
+                if(rightPiece === 0){
+                    this.legalMoves.push({x: x + 1, y: y + 1})
+                }
+
+                if(leftPiece === 0){
+                    this.legalMoves.push({x: x - 1, y: y + 1})
+                }
+
+                //console.log('in2 black--->', x, y, leftPiece === 0, rightPiece === 0)
             }
-        }
-
-        if(CACHE.turn === 'black' && y<6){
-
-            if(x<6) rightPiece = PIECES[y+1][x+1]
-
-            if(x>1) leftPiece = PIECES[y+1][x-1]
-
-            if(rightPiece){
-                this.legalMoves.push({x: x + 1, y: y + 1})
-            }
-
-            if(leftPiece){
-                this.legalMoves.push({x: x + 1, y: y + 1})
-            }
-
         }
     }
 
