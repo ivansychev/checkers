@@ -1,6 +1,7 @@
 import { pieceStyles } from "../store/styles.js"
 import { PIECES, CACHE } from "../store/state";
-import * as utils from '../../logic/game/utils'
+import * as gUtils from '../../logic/game/utils'
+import * as oUtils from './utils'
 
 const PI = Math.PI
 
@@ -44,93 +45,48 @@ export default class Piece{
         return null
     }
 
-    shoudEatPiece(){
+    shoudEatPiece(x = this.cellX, y = this.cellY){
 
-        let x=this.cellX, y=this.cellY, rightPiece, leftPiece, afterRightPiece, afterLeftPiece;
-
-        console.log('start1--->', x, y)
-
-        if(CACHE.turn === this.getSide()){
+        if(this.getSide() === CACHE.turn){
             if(this.getSide() === 'white' && y>1){
-
-                if(x<6) rightPiece = PIECES[y-1][x+1]
-                if(rightPiece && this.side !== rightPiece.side) afterRightPiece = utils.isEmptyCell(x+2, y-2)
-
-                if(x>1) leftPiece = PIECES[y-1][x-1]
-                if(leftPiece && this.side !== leftPiece.side) afterLeftPiece = utils.isEmptyCell(x-2, y-2)
-
-                if(afterRightPiece){
+                if(oUtils.canHitToTheRight(x, y, this.getSide()))
                     this.legalMoves.push({x: x + 2, y: y - 2})
-                }
 
-                if(afterLeftPiece){
+                if(oUtils.canHitToTheLeft(x, y, this.getSide()))
                     this.legalMoves.push({x: x - 2, y: y - 2})
-                }
-
-                console.log('in1 white left--->', afterLeftPiece)
-                console.log('in1 white right--->', afterRightPiece)
             }
 
             if(this.getSide() === 'black' && y<6){
-
-                if(x<6) rightPiece = PIECES[y+1][x+1]
-                if(rightPiece && this.side !== rightPiece.side) afterRightPiece = utils.isEmptyCell(x+2, y+2)
-
-                if(x>1) leftPiece = PIECES[y+1][x-1]
-                if(leftPiece && this.side !== leftPiece.side) afterLeftPiece = utils.isEmptyCell(x-2, y+2)
-
-                if(afterRightPiece){
+                if(oUtils.canHitToTheRight(x, y, this.getSide()))
                     this.legalMoves.push({x: x + 2, y: y + 2})
-                }
 
-                if(afterLeftPiece){
+                if(oUtils.canHitToTheLeft(x, y, this.getSide()))
                     this.legalMoves.push({x: x - 2, y: y + 2})
-                }
-
-                console.log('in1 black left--->', afterLeftPiece)
-                console.log('in1 black right--->', afterRightPiece)
             }
         }
     }
 
-    shouldMove(){
+    shouldMove(x = this.cellX, y = this.cellY){
 
-        let x=this.cellX, y=this.cellY, rightPiece, leftPiece;
-
-        //console.log('start2--->', x, y)
         if(CACHE.turn === this.getSide()){
             if(this.getSide() === 'white' && y>0){
 
-                if(x<7) rightPiece = PIECES[y-1][x+1]
-
-                if(x>0) leftPiece = PIECES[y-1][x-1]
-
-                if(rightPiece === 0){
+                if(oUtils.canMoveToTheRight(x, y, this.getSide()))
                     this.legalMoves.push({x: x + 1, y: y - 1})
-                }
 
-                if(leftPiece === 0){
+                if(oUtils.canMoveToTheLeft(x, y, this.getSide()))
                     this.legalMoves.push({x: x - 1, y: y - 1})
-                }
 
-                //console.log('in2 white--->', x, y, leftPiece === 0, rightPiece === 0)
             }
 
             if(this.getSide() === 'black' && y<7){
 
-                if(x<7) rightPiece = PIECES[y+1][x+1]
-
-                if(x>0) leftPiece = PIECES[y+1][x-1]
-
-                if(rightPiece === 0){
+                if(oUtils.canMoveToTheRight(x, y, this.getSide()))
                     this.legalMoves.push({x: x + 1, y: y + 1})
-                }
 
-                if(leftPiece === 0){
+                if(oUtils.canMoveToTheLeft(x, y, this.getSide()))
                     this.legalMoves.push({x: x - 1, y: y + 1})
-                }
-
-                //console.log('in2 black--->', x, y, leftPiece === 0, rightPiece === 0)
+                
             }
         }
     }
