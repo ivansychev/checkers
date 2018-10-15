@@ -36,8 +36,7 @@ export function movePiece(){
 
             //TODO change logic
             utils.initLegalMoves()
-            console.log(PIECES)
-
+            
             console.log('moved')
 
         }

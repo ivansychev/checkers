@@ -1,6 +1,5 @@
 import { pieceStyles } from "../store/styles.js"
-import { PIECES, CACHE } from "../store/state";
-import * as gUtils from '../../logic/game/utils'
+import { CACHE } from "../store/state";
 import * as oUtils from './utils'
 
 const PI = Math.PI
@@ -48,6 +47,7 @@ export default class Piece{
     shoudEatPiece(x = this.cellX, y = this.cellY){
 
         if(this.getSide() === CACHE.turn){
+
             if(this.getSide() === 'white' && y>1){
                 if(oUtils.canHitToTheRight(x, y, this.getSide()))
                     this.legalMoves.push({x: x + 2, y: y - 2})
@@ -69,6 +69,7 @@ export default class Piece{
     shouldMove(x = this.cellX, y = this.cellY){
 
         if(CACHE.turn === this.getSide()){
+
             if(this.getSide() === 'white' && y>0){
 
                 if(oUtils.canMoveToTheRight(x, y, this.getSide()))
@@ -86,16 +87,14 @@ export default class Piece{
 
                 if(oUtils.canMoveToTheLeft(x, y, this.getSide()))
                     this.legalMoves.push({x: x - 1, y: y + 1})
-                
+
             }
         }
     }
 
     isMovingLegally(dx, dy){
-        console.log('check')
-        return this.legalMoves.some((value)=>{
-            console.log(value.x, value.y, dx, dy, value.x === dx && value.y === dy)
-            return (value.x === dx && value.y === dy)
-        })
+        return this.legalMoves.some(value=>
+             (value.x === dx && value.y === dy)
+        )
     }
 }

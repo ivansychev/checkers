@@ -13,11 +13,7 @@ export function isMouseOutsideCanvas(){
 }
 
 export function isEmptyCell(x, y){
-    if(x && y){
-        console.log('in utils-->', PIECES[y][x])
-        return !PIECES[y][x];
-    }
-    console.log('in utils-->', PIECES[COORDS.y][COORDS.x])
+    if(x && y) return !PIECES[y][x];
     return !PIECES[COORDS.y][COORDS.x];
 }
 
