@@ -98,3 +98,10 @@ export function initLegalMoves() {
         })
     })
 }
+
+export function eatPieceIfExists(legalMove){
+    if(legalMove.eat && legalMove.eat.x && legalMove.eat.y){
+        PIECES[legalMove.eat.y][legalMove.eat.x]=0
+    }
+    console.log(PIECES)
+}

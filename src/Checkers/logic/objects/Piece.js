@@ -50,18 +50,46 @@ export default class Piece{
 
             if(this.getSide() === 'white' && y>1){
                 if(oUtils.canHitToTheRight(x, y, this.getSide()))
-                    this.legalMoves.push({x: x + 2, y: y - 2})
+                    this.legalMoves.push({
+                        x: x + 2,
+                        y: y - 2,
+                        eat: {
+                            x: x + 1,
+                            y: y - 1
+                        },
+                    })
 
                 if(oUtils.canHitToTheLeft(x, y, this.getSide()))
-                    this.legalMoves.push({x: x - 2, y: y - 2})
+                    this.legalMoves.push({
+                        x: x - 2,
+                        y: y - 2,
+                        eat: {
+                            x: x - 1,
+                            y: y - 1
+                        },
+                    })
             }
 
             if(this.getSide() === 'black' && y<6){
                 if(oUtils.canHitToTheRight(x, y, this.getSide()))
-                    this.legalMoves.push({x: x + 2, y: y + 2})
+                    this.legalMoves.push({
+                        x: x + 2,
+                        y: y + 2,
+                        eat: {
+                            x: x + 1,
+                            y: y + 1
+                        },
+                    })
 
                 if(oUtils.canHitToTheLeft(x, y, this.getSide()))
-                    this.legalMoves.push({x: x - 2, y: y + 2})
+                    this.legalMoves.push({
+                        x: x - 2,
+                        y: y + 2,
+                        eat: {
+                            x: x - 1,
+                            y: y + 1
+                        },
+                    })
             }
         }
     }
@@ -92,9 +120,10 @@ export default class Piece{
         }
     }
 
-    isMovingLegally(dx, dy){
-        return this.legalMoves.some(value=>
+    getLegalMove(dx, dy){
+        return this.legalMoves.find(value=>
              (value.x === dx && value.y === dy)
         )
     }
+
 }

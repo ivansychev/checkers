@@ -17,7 +17,11 @@ export function movePiece(){
             dx = CACHE.clicked.x,
             dy =CACHE.clicked.y;
 
-        if(piece.isMovingLegally(dx, dy)){
+        const legalMove = piece.getLegalMove(dx, dy)
+
+        if(legalMove){
+
+            utils.eatPieceIfExists(legalMove)
 
             piece.x = CELL_SIDE * CACHE.clicked.x + HALF_CELLS_SIDE;
             piece.y = CELL_SIDE * CACHE.clicked.y + HALF_CELLS_SIDE;
