@@ -44,6 +44,7 @@ export function movePiece(){
             }
 
             //TODO fix bug! when in chain eating you can eat by different pieces
+            //TODO game becomes super bugged when chain eating more than 2 pieces
 
             //TODO change logic
             utils.initLegalMoves()
