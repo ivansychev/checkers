@@ -23,6 +23,7 @@ export function movePiece(){
 
             utils.eatPieceIfExists(legalMove)
             utils.movePiece(piece)
+            CACHE.shouldEat = false
 
             removeSelectedCellAndPiece()
 
