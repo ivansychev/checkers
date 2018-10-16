@@ -90,3 +90,18 @@ export function resetCacheSelected() {
 export function toggleTurn() {
     CACHE.turn = CACHE.turn === 'white' ? 'black' : 'white'
 }
+
+export function initLegalMoves() {
+    PIECES.forEach((row) => {
+        row.forEach((value) => {
+            if(value) value.fillLegalMoves()
+        })
+    })
+}
+
+export function eatPieceIfExists(legalMove){
+    if(legalMove.eat && legalMove.eat.x && legalMove.eat.y){
+        PIECES[legalMove.eat.y][legalMove.eat.x]=0
+    }
+    console.log(PIECES)
+}

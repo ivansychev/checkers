@@ -32,7 +32,9 @@ export function drawPieces(ctx){
                     'aqua',
                     RADIUS,
                     false,
-                    false
+                    false,
+                    j,
+                    i
                 );
                 self[j] = piece;
                 piece.drawSelf(ctx);

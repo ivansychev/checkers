@@ -1,7 +1,7 @@
 import { drawBoard, drawPieces } from "./init"
 import { draw } from "./render";
 import { CXT } from '../../components/canvas-component.jsx'
-import { MOUSE, CACHE, COORDS, CELLS, PIECES, CELL_SIDE } from "../store/state";
+import { MOUSE, CACHE, COORDS, CELLS, PIECES } from "../store/state";
 import * as utils from "./utils"
 import {movePiece} from "./rules";
 
@@ -13,6 +13,7 @@ export function launchGame(){
 function initGame(){
     drawBoard(CXT)
     drawPieces(CXT)
+    utils.initLegalMoves()
 }
 
 function startGame(){
