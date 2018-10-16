@@ -22,27 +22,17 @@ export function movePiece(){
         if(legalMove){
 
             utils.eatPieceIfExists(legalMove)
-
-            piece.x = CELL_SIDE * CACHE.clicked.x + HALF_CELLS_SIDE;
-            piece.y = CELL_SIDE * CACHE.clicked.y + HALF_CELLS_SIDE;
-
-            piece.cellX = CACHE.clicked.x
-            piece.cellY = CACHE.clicked.y
-
-            PIECES[CACHE.selected.y][CACHE.selected.x] = 0;
-            PIECES[CACHE.clicked.y][CACHE.clicked.x] = piece;
+            utils.movePiece(piece)
 
             removeSelectedCellAndPiece()
 
             utils.resetCacheSelected()
-
             utils.toggleTurn()
 
             //TODO change logic
             utils.initLegalMoves()
             
             console.log('moved')
-
         }
         else{
             console.log('illegal move')

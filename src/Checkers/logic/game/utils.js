@@ -1,4 +1,4 @@
-import {CACHE, CELL_SIDE, CELLS, COORDS, MOUSE, PIECES} from "../store/state";
+import {CACHE, CELL_SIDE, CELLS, COORDS, HALF_CELLS_SIDE, MOUSE, PIECES} from "../store/state";
 
 export function hasCoordsChanged(){
     return (COORDS.x !== CACHE.coords.x || COORDS.y !== CACHE.coords.y)
@@ -104,4 +104,15 @@ export function eatPieceIfExists(legalMove){
         PIECES[legalMove.eat.y][legalMove.eat.x]=0
     }
     console.log(PIECES)
+}
+
+export function movePiece(piece){
+    piece.x = CELL_SIDE * CACHE.clicked.x + HALF_CELLS_SIDE;
+    piece.y = CELL_SIDE * CACHE.clicked.y + HALF_CELLS_SIDE;
+
+    piece.cellX = CACHE.clicked.x
+    piece.cellY = CACHE.clicked.y
+
+    PIECES[CACHE.selected.y][CACHE.selected.x] = 0;
+    PIECES[CACHE.clicked.y][CACHE.clicked.x] = piece;
 }
