@@ -1,32 +1,34 @@
-import {PIECES} from "../store/state";
+import {PIECES, CACHE} from "../store/state";
 import * as gUtils from "../game/utils";
 
 export function canHitToTheRight(x, y, side){
-    let rightPiece, afterRightPiece;
+    let rightPiece, afterRightPieceIsEmpty;
     if(side === 'white'){
         if(x<6) rightPiece = PIECES[y-1][x+1]
-        if(rightPiece && this.side !== rightPiece.side) afterRightPiece = gUtils.isEmptyCell(x+2, y-2)
+        if(rightPiece && side !== rightPiece.getSide()) afterRightPieceIsEmpty = gUtils.isEmptyCell(x+2, y-2)
     }
     if(side === 'black'){
         if(x<6) rightPiece = PIECES[y+1][x+1]
-        if(rightPiece && this.side !== rightPiece.side) afterRightPiece = gUtils.isEmptyCell(x+2, y+2)
+        if(rightPiece && side !== rightPiece.getSide()) afterRightPieceIsEmpty = gUtils.isEmptyCell(x+2, y+2)
     }
-    return afterRightPiece
+    if(afterRightPieceIsEmpty) CACHE.shouldEat = true
+    return afterRightPieceIsEmpty
 }
 
 export function canHitToTheLeft(x, y, side){
-    let leftPiece, afterLeftPiece;
+    let leftPiece, afterLeftPieceIsEmpty;
     if(side === 'white'){
         if(x>1) leftPiece = PIECES[y-1][x-1]
-        if(leftPiece && this.side !== leftPiece.side) afterLeftPiece = gUtils.isEmptyCell(x-2, y-2)
+        if(leftPiece && side !== leftPiece.getSide()) afterLeftPieceIsEmpty = gUtils.isEmptyCell(x-2, y-2)
 
     }
     if(side === 'black') {
         if(x>1) leftPiece = PIECES[y+1][x-1]
-        if(leftPiece && this.side !== leftPiece.side) afterLeftPiece = gUtils.isEmptyCell(x-2, y+2)
+        if(leftPiece && side !== leftPiece.getSide()) afterLeftPieceIsEmpty = gUtils.isEmptyCell(x-2, y+2)
 
     }
-    return afterLeftPiece
+    if(afterLeftPieceIsEmpty) CACHE.shouldEat = true
+    return afterLeftPieceIsEmpty
 }
 
 export function canMoveToTheRight(x, y, side){
