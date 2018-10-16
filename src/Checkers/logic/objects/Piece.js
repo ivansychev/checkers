@@ -33,9 +33,13 @@ export default class Piece{
     }
 
     fillLegalMoves(){
-        this.legalMoves.splice(0, this.legalMoves.length)
-        this.shoudEatPiece()
+        this.clearLegalMoves()
+        this.shouldEatPiece()
         this.shouldMove()
+    }
+
+    clearLegalMoves(){
+        this.legalMoves.splice(0, this.legalMoves.length)
     }
 
     getSide(){
@@ -44,7 +48,12 @@ export default class Piece{
         return null
     }
 
-    shoudEatPiece(x = this.cellX, y = this.cellY){
+    canEatAgain(x = this.cellX, y = this.cellY){
+        this.clearLegalMoves()
+        this.shouldEatPiece(x, y)
+    }
+
+    shouldEatPiece(x = this.cellX, y = this.cellY){
 
         if(this.getSide() === CACHE.turn){
 

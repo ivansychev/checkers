@@ -83,10 +83,16 @@ export function updateCacheClicked(x, y) {
     CACHE.clicked.y = Math.floor(y/CELL_SIDE);
 }
 
+export function setCahceSelectedEqualToCacheClicked(){
+    CACHE.selected.x = CACHE.clicked.x
+    CACHE.selected.y = CACHE.clicked.y
+}
+
 export function resetCacheSelected() {
     CACHE.selected.x = null;
     CACHE.selected.y = null;
 }
+
 export function toggleTurn() {
     CACHE.turn = CACHE.turn === 'white' ? 'black' : 'white'
 }
@@ -102,8 +108,8 @@ export function initLegalMoves() {
 export function eatPieceIfExists(legalMove){
     if(legalMove.eat && legalMove.eat.x && legalMove.eat.y){
         PIECES[legalMove.eat.y][legalMove.eat.x]=0
+        CACHE.hasEaten = true
     }
-    console.log(PIECES)
 }
 
 export function movePiece(piece){

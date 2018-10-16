@@ -9,6 +9,7 @@ export function movePiece(){
     && utils.isBlackCell()){
 
         console.log('is going to move')
+        console.log(JSON.parse(JSON.stringify(PIECES)))
 
         const piece = PIECES[CACHE.selected.y][CACHE.selected.x];
 
@@ -23,12 +24,26 @@ export function movePiece(){
 
             utils.eatPieceIfExists(legalMove)
             utils.movePiece(piece)
-            CACHE.shouldEat = false
 
             removeSelectedCellAndPiece()
+            utils.setCahceSelectedEqualToCacheClicked()
+
 
             utils.resetCacheSelected()
-            utils.toggleTurn()
+
+            if(CACHE.hasEaten){
+                piece.canEatAgain()
+                if(piece.legalMoves.length === 0){
+                    utils.toggleTurn()
+                    CACHE.shouldEat = false
+                    CACHE.hasEaten = false
+                }
+            }
+            else{
+                utils.toggleTurn()
+            }
+
+            //TODO fix bug! when in chain eating you can eat by different pieces
 
             //TODO change logic
             utils.initLegalMoves()
@@ -36,6 +51,7 @@ export function movePiece(){
             console.log('moved')
         }
         else{
+            alert('illegal move')
             console.log('illegal move')
         }
     }

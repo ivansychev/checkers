@@ -18,7 +18,8 @@ export const CACHE = {
         y: null
     },
     turn: 'white',
-    shouldEat: false
+    shouldEat: false,
+    hasEaten: false
 }
 
 export const PIECES = [ [0,2,0,2,0,2,0,2],
