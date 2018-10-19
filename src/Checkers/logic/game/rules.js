@@ -9,7 +9,7 @@ export function movePiece(){
     && utils.isBlackCell()){
 
         console.log('is going to move')
-        console.log(JSON.parse(JSON.stringify(PIECES)))
+        //console.log(JSON.parse(JSON.stringify(PIECES)))
 
         const piece = PIECES[CACHE.selected.y][CACHE.selected.x];
 
@@ -43,16 +43,12 @@ export function movePiece(){
             else{
                 utils.toggleTurn()
             }
-
-            //TODO fix bug! when in chain eating you can eat by different pieces
-            //TODO game becomes super bugged when chain eating more than 2 pieces
-
+            
             //TODO change logic
             utils.initLegalMoves()
             
             console.log('moved')
-            console.log(JSON.parse(JSON.stringify(PIECES)))
-            console.log(JSON.parse(JSON.stringify(CELLS)))
+            //console.log(JSON.parse(JSON.stringify(PIECES)))
         }
         else{
             alert('illegal move')
