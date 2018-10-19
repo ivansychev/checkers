@@ -35,9 +35,11 @@ export default class Queen extends Piece{
         ctx.closePath()
     }
 
-   /* shouldEatPiece(){
-
-    }*/
+   shouldEatPiece(x = this.cellX, y = this.cellY){
+       if(CACHE.turn === this.getSide()){
+           oUtils.fillQueenEatingMoves(x, y, this.getSide(), this.legalMoves)
+       }
+    }
 
     shouldMove(x = this.cellX, y = this.cellY){
         if(CACHE.turn === this.getSide()){

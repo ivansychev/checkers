@@ -4,6 +4,12 @@ import { removeSelectedCellAndPiece } from "./game";
 
 export function movePiece(){
 
+    /*console.log('piece--->',
+        JSON.parse(JSON.stringify(
+            PIECES[CACHE.selected.y][CACHE.selected.x].legalMoves
+        ))
+    )*/
+
     if(utils.isSelectedDifferentToClicked()
         && utils.isCacheSelectedInitialized()
     && utils.isBlackCell()){
@@ -43,7 +49,7 @@ export function movePiece(){
             else{
                 utils.toggleTurn()
             }
-            
+
             //TODO change logic
             utils.initLegalMoves()
             
