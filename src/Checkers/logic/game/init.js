@@ -11,7 +11,7 @@ export function drawBoard(ctx){
                 CELL_SIDE,
                 CELL_SIDE,
                 val,
-                'aqua',
+                'lava',
                 false,
                 false
             );
@@ -29,7 +29,7 @@ export function drawPieces(ctx){
                     CELL_SIDE * j + HALF_CELLS_SIDE,
                     CELL_SIDE * i + HALF_CELLS_SIDE,
                     val,
-                    'aqua',
+                    'lava',
                     RADIUS,
                     false,
                     false,
