@@ -22,10 +22,11 @@ export function movePiece(){
 
         if(legalMove){
 
+            removeSelectedCellAndPiece()
             utils.eatPieceIfExists(legalMove)
             utils.movePiece(piece)
 
-            removeSelectedCellAndPiece()
+
             utils.setCahceSelectedEqualToCacheClicked()
 
 
@@ -50,6 +51,8 @@ export function movePiece(){
             utils.initLegalMoves()
             
             console.log('moved')
+            console.log(JSON.parse(JSON.stringify(PIECES)))
+            console.log(JSON.parse(JSON.stringify(CELLS)))
         }
         else{
             alert('illegal move')
