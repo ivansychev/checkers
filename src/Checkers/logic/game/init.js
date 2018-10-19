@@ -25,7 +25,7 @@ export function drawPieces(ctx){
     PIECES.forEach((row, i) => {
         row.forEach((val, j, self) => {
             if(val !== 0){
-                const piece =new Piece(
+                const piece = new Piece(
                     CELL_SIDE * j + HALF_CELLS_SIDE,
                     CELL_SIDE * i + HALF_CELLS_SIDE,
                     val,
