@@ -78,7 +78,7 @@ export function fillQueenEatingMoves(x, y, side, legalMoves){
 
     if(y>1){
         ru = PIECES[y-1][x+1]
-        if(ru && side !== ru.getSide() && gUtils.isEmptyCell(x+2, y-2)) {
+        if(x<6 && ru && side !== ru.getSide() && gUtils.isEmptyCell(x+2, y-2)) {
             legalMoves.push({
                 x: x + 2,
                 y: y - 2,
@@ -90,7 +90,7 @@ export function fillQueenEatingMoves(x, y, side, legalMoves){
             CACHE.shouldEat = true
         }
         lu = PIECES[y-1][x-1]
-        if(lu && side !== lu.getSide() && gUtils.isEmptyCell(x-2, y-2)) {
+        if(x>1 && lu && side !== lu.getSide() && gUtils.isEmptyCell(x-2, y-2)) {
             legalMoves.push({
                 x: x - 2,
                 y: y - 2,
@@ -105,7 +105,7 @@ export function fillQueenEatingMoves(x, y, side, legalMoves){
 
     if(y<6){
         ld = PIECES[y+1][x-1]
-        if(ld && side !== ld.getSide() && gUtils.isEmptyCell(x-2, y+2)){
+        if(x>1 && ld && side !== ld.getSide() && gUtils.isEmptyCell(x-2, y+2)){
             legalMoves.push({
                 x: x-2,
                 y: y+2,
@@ -118,7 +118,7 @@ export function fillQueenEatingMoves(x, y, side, legalMoves){
         }
 
         rd = PIECES[y+1][x+1]
-        if(rd && side !== rd.getSide() && gUtils.isEmptyCell(x+2, y+2)){
+        if(x<6 && rd && side !== rd.getSide() && gUtils.isEmptyCell(x+2, y+2)){
             legalMoves.push({
                 x: x+2,
                 y: y+2,
