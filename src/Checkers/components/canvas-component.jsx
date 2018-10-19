@@ -33,12 +33,14 @@ export default class CanvasComponent extends React.Component{
     }
 
     handleClick(){
-        logCache()
         utils.updateCacheClicked(MOUSE.x, MOUSE.y)
-
+        console.log('-----------------------')
+        logCache()
         pieceSelectionRoutine()
+        logCache()
         pieceMovementRoutine()
         logCache()
+        console.log('-----------------------')
     }
 
     render(){
