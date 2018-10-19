@@ -42,6 +42,12 @@ export default class Piece{
         this.legalMoves.splice(0, this.legalMoves.length)
     }
 
+    checkIfBecameQueen(){
+        if(this.getSide() === 'white' && this.cellY === 0) return true
+        if(this.getSide() === 'black' && this.cellY === 7) return true
+        return false
+    }
+
     getSide(){
         if(this.side === 1) return 'white'
         if(this.side === 2) return 'black'

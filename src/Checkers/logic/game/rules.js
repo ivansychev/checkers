@@ -2,6 +2,15 @@ import { CACHE, PIECES, CELLS, CELL_SIDE, HALF_CELLS_SIDE } from "../store/state
 import * as utils from './utils'
 import { removeSelectedCellAndPiece } from "./game";
 
+//-----------WTF WEBPACK??-----------
+// import Queen fails some files
+// temp solution -->
+import Queen from '../objects/Queen.js'
+export function makeQueen(piece){
+    PIECES[piece.cellY][piece.cellX] = new Queen(piece)
+}
+//------------------------------------
+
 export function movePiece(){
 
     /*console.log('piece--->',
@@ -48,6 +57,10 @@ export function movePiece(){
             }
             else{
                 utils.toggleTurn()
+            }
+
+            if(piece.checkIfBecameQueen()){
+                makeQueen(piece)
             }
 
             //TODO change logic
