@@ -12,9 +12,8 @@ export function isMouseOutsideCanvas(){
     return (MOUSE.x === 0 && MOUSE.y === 0 || MOUSE.x < 0 || MOUSE.y < 0)
 }
 
-export function isEmptyCell(x, y){
-    if(x && y) return !PIECES[y][x];
-    return !PIECES[COORDS.y][COORDS.x];
+export function isEmptyCell(x = COORDS.x, y = COORDS.y){
+    return !PIECES[y][x];
 }
 
 export function isCacheCoordsInitialized(){
