@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { launchGame, pieceSelectionRoutine, pieceHoverRoutine, pieceMovementRoutine } from "../logic/game/game"
-import { MOUSE, CACHE } from "../logic/store/state"
+import {MOUSE} from "../logic/store/state"
 import * as utils from "../logic/game/utils"
 import {logCache} from "../logger/log";
 

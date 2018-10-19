@@ -48,3 +48,23 @@ export function canMoveToTheLeft(x, y, side){
         if(x>0) leftPiece = PIECES[y+1][x-1]
     return leftPiece === 0
 }
+
+export function fillQueenLegalMoves(x, y, legalMoves){
+    let lu, ld, ru, rd
+
+    if(y>0){
+        ru = PIECES[y-1][x+1]
+        lu = PIECES[y-1][x-1]
+    }
+
+    if(y<7){
+        ld = PIECES[y+1][x-1]
+        rd = PIECES[y+1][x+1]
+    }
+
+    if(ru === 0) legalMoves.push({x: x+1, y: y-1 })
+    if(lu === 0) legalMoves.push({x: x-1, y: y-1 })
+    if(ld === 0) legalMoves.push({x: x-1, y: y+1 })
+    if(rd === 0) legalMoves.push({x: x+1, y: y+1 })
+
+}
