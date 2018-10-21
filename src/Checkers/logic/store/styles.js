@@ -6,8 +6,8 @@ export const pieceStyles = {
                     strokeStyle : '#9aa2af'
                 },
                 lava:{
-                    fillStyle : "#eae7cc",
-                    strokeStyle:  "#f2f47d",
+                    fillStyle : "#b3c0d6",
+                    strokeStyle : '#9aa2af'
                 }
             }
         },
@@ -19,8 +19,8 @@ export const pieceStyles = {
                     strokeStyle : '#545556'
                 },
                 lava:{
-                    fillStyle : "#3e3529",
-                    strokeStyle:  "#262727",
+                    fillStyle : "#480007",
+                    strokeStyle : '#7a7878'
                 }
             }
         }
@@ -31,11 +31,15 @@ export const cellStyles = {
         themes: {
             aqua:{
                 fillStyle : "rgba(255, 255, 255, 0.75)",
-                hoveredStyle:  "rgba(255, 255, 255, 0.5)",
+                hoveredStyle:  "rgba(255, 255, 255, 0.5)"
             },
             lava:{
-                fillStyle : "#e8eaea",
-                hoveredStyle:  "#eee3b1",
+                fillStyle : "rgba(255, 255, 255, 0.75)",
+                hoveredStyle:  "rgba(255, 255, 255, 0.5)"
+            },
+            ruby:{
+                fillStyle : "rgba(255, 255, 255, 0.75)",
+                hoveredStyle:  "rgba(255, 255, 255, 0.5)"
             }
         }
     },
@@ -51,6 +55,11 @@ export const cellStyles = {
                 fillStyle : "#dd4e1a",
                 hoveredStyle:  "#ff9966",
                 selectedStyle: "blue"
+            },
+            ruby: {
+                fillStyle : "rgba(178, 5, 5, .85)",
+                hoveredStyle: "rgba(178, 5, 5, .55)",
+                selectedStyle: "rgba(243, 195, 52, 0.8)"
             }
         }
     }
