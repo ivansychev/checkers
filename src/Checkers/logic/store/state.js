@@ -1,3 +1,6 @@
+import { CXT } from "../../components/canvas-component.jsx";
+import * as gUtils from "../game/utils"
+
 export let MOUSE = {x:0, y:0}
 export const COORDS = {x:0, y:0}
 export const CACHE = {
@@ -45,6 +48,6 @@ export const CELLS = [
     [1,0,1,0,1,0,1,0]
 ]
 
-export const CELL_SIDE = 50;
-export const HALF_CELLS_SIDE = 25;
-export const RADIUS = 20;
+export const CELL_SIDE = gUtils.getSideLength()/8;
+export const HALF_CELLS_SIDE = CELL_SIDE/2;
+export const RADIUS = HALF_CELLS_SIDE*0.8;

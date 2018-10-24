@@ -47,8 +47,8 @@ export default class CanvasComponent extends React.Component{
         return(
             <canvas
                 ref="canvas"
-                width={400}
-                height={400}
+                width={utils.getSideLength()}
+                height={utils.getSideLength()}
                 onMouseMove={this.getMousePos}
                 onClick={this.handleClick}
             />

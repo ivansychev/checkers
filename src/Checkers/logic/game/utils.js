@@ -124,3 +124,16 @@ export function movePiece(piece){
     PIECES[CACHE.selected.y][CACHE.selected.x] = 0;
     PIECES[CACHE.clicked.y][CACHE.clicked.x] = piece;
 }
+
+export function getSideLength(){
+    let w = window.innerWidth - 300;
+    if(w < 400) w = 400;
+    if(w > 1000) w = 1000;
+
+    let h = window.innerHeight - 300;
+    if(h < 400) h = 400;
+    if(h > 1000) h =  1000;
+
+    if(w <= h) return w;
+    if(w >= h) return h;
+}
