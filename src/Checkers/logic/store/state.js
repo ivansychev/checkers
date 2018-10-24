@@ -48,6 +48,15 @@ export const CELLS = [
     [1,0,1,0,1,0,1,0]
 ]
 
-export const CELL_SIDE = gUtils.getSideLength()/8;
-export const HALF_CELLS_SIDE = CELL_SIDE/2;
-export const RADIUS = HALF_CELLS_SIDE*0.8;
+export let CELL_SIDE = gUtils.getSideLength()/8;
+export let HALF_CELLS_SIDE = CELL_SIDE/2;
+export let RADIUS = HALF_CELLS_SIDE*0.8;
+
+window.addEventListener('resize', ()=>{
+    CELL_SIDE = gUtils.getSideLength()/8;
+    HALF_CELLS_SIDE = CELL_SIDE/2;
+    RADIUS = HALF_CELLS_SIDE*0.8;
+    gUtils.updateCanvasSize()
+    gUtils.updateCellsSize(CELL_SIDE)
+    gUtils.updatePiecesSize(CELL_SIDE, RADIUS)
+})

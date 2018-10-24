@@ -137,3 +137,32 @@ export function getSideLength(){
     if(w <= h) return w;
     if(w >= h) return h;
 }
+
+export function updateCellsSize(CELL_SIDE){
+    CELLS.forEach((row, i) => {
+        row.forEach((val, j) => {
+            val.x = j * CELL_SIDE;
+            val.y = i * CELL_SIDE;
+            val.w = CELL_SIDE
+            val.h = CELL_SIDE
+        })
+    })
+}
+
+export function updatePiecesSize(CELL_SIDE, RADIUS){
+    PIECES.forEach((row, i) => {
+        row.forEach((val, j) => {
+            if(val !== 0){
+                val.x = CELL_SIDE * j + HALF_CELLS_SIDE
+                val.y = CELL_SIDE * i + HALF_CELLS_SIDE
+                val.radius = RADIUS
+            }
+        })
+    })
+}
+
+export function updateCanvasSize(){
+    const c = document.getElementsByTagName('canvas')[0]
+    c.width = getSideLength()
+    c.height = getSideLength()
+}

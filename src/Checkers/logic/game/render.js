@@ -3,6 +3,7 @@ import {CELLS, PIECES, CACHE } from "../store/state";
 
 export function draw(ctx){
     ctx.clearRect(0, 0, C.width, C.height)
+
     redrawBoard(ctx)
     redrawPieces(ctx)
 }
