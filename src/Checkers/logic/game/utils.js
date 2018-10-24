@@ -126,7 +126,7 @@ export function movePiece(piece){
 }
 
 export function getSideLength(){
-    let w = window.innerWidth - 300;
+    let w = window.innerWidth - 150;
     if(w < 400) w = 400;
     if(w > 1000) w = 1000;
 
