@@ -94,6 +94,9 @@ export function resetCacheSelected() {
 
 export function toggleTurn() {
     CACHE.turn = CACHE.turn === 'white' ? 'black' : 'white'
+
+    //TODO: remove in he future
+    window.tempComponent.setTurn(CACHE.turn)
 }
 
 export function initLegalMoves() {

@@ -19,7 +19,7 @@ export default class Turn extends React.Component{
             <div>
                 Ход:
                 <span>
-                        {this.state.turn === 'white' ? ' Белые' : ' Черные'}
+                    {this.state.turn === 'white' ? ' Белые' : ' Черные'}
                     </span>
             </div>
         )
