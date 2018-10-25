@@ -1,3 +1,5 @@
+let a = require('./server/utils.js')
+
 // Dependencies.
 let express = require('express');
 let http = require('http');
@@ -23,6 +25,7 @@ server.listen(5000, function() {
 let players = {};
 io.on('connection', function(socket) {
     socket.on('new player', function() {
+        a.a()
         if(Object.keys(players).length < 2){
             players[socket.id] = {
                 x: 0,
