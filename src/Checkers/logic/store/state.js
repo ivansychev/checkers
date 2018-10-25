@@ -22,7 +22,8 @@ export const CACHE = {
     },
     turn: 'white',
     shouldEat: false,
-    hasEaten: false
+    hasEaten: false,
+    playerSide: null
 }
 
 export const PIECES = [
@@ -60,3 +61,9 @@ window.addEventListener('resize', ()=>{
     gUtils.updateCellsSize(CELL_SIDE)
     gUtils.updatePiecesSize(CELL_SIDE, RADIUS)
 })
+
+export let socket = io();
+socket.emit('new player');
+setInterval(function() {
+    socket.emit('clicking', CACHE.clicked);
+}, 1000 / 60);

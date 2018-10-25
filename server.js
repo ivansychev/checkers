@@ -1,12 +1,12 @@
 // Dependencies.
-var express = require('express');
-var http = require('http');
-var path = require('path');
-var socketIO = require('socket.io');
+let express = require('express');
+let http = require('http');
+let path = require('path');
+let socketIO = require('socket.io');
 
-var app = express();
-var server = http.Server(app);
-var io = socketIO(server);
+let app = express();
+let server = http.Server(app);
+let io = socketIO(server);
 
 app.set('port', 5000);
 app.use('/dist', express.static(__dirname + '/dist'));
@@ -20,28 +20,18 @@ server.listen(5000, function() {
     console.log('Starting server on port 5000');
 });
 
-var players = {};
+let players = {};
 io.on('connection', function(socket) {
     socket.on('new player', function() {
-        players[socket.id] = {
-            x: 300,
-            y: 300
-        };
+        if(Object.keys(players).length < 2){
+            players[socket.id] = {
+                x: 0,
+                y: 0
+            };
+        }
     });
-    socket.on('movement', function(data) {
-        var player = players[socket.id] || {};
-        if (data.left) {
-            player.x -= 5;
-        }
-        if (data.up) {
-            player.y -= 5;
-        }
-        if (data.right) {
-            player.x += 5;
-        }
-        if (data.down) {
-            player.y += 5;
-        }
+    socket.on('clicking', function(data) {
+        let player = players[socket.id] || {};
     });
 });
 
