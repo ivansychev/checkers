@@ -42,5 +42,9 @@ io.on('connection', function(socket) {
                 side: 'spectator'
             })
         }
+        io.sockets.emit('update players', {
+            player1: STATE.CACHE.player1,
+            player2: STATE.CACHE.player2
+        })
     });
 });

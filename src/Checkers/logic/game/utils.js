@@ -96,7 +96,12 @@ export function toggleTurn() {
     CACHE.turn = CACHE.turn === 'white' ? 'black' : 'white'
 
     //TODO: remove in he future
-    window.tempComponent.setTurn(CACHE.turn)
+    window.turnComponent.setTurn(CACHE.turn)
+}
+
+export function updatePlayersData(data){
+    //TODO: remove in he future
+    window.playersComponent.setPlayers(data)
 }
 
 export function initLegalMoves() {

@@ -62,3 +62,7 @@ window.addEventListener('resize', ()=>{
 
 export let socket = io();
 socket.emit('new player');
+
+socket.on('update players', (data)=>{
+    gUtils.updatePlayersData(data)
+})
