@@ -6,6 +6,8 @@ let http = require('http');
 let path = require('path');
 let socketIO = require('socket.io');
 
+const STATE = require('./server/state.js')
+
 let app = express();
 let server = http.Server(app);
 let io = socketIO(server);
@@ -22,22 +24,23 @@ server.listen(5000, function() {
     console.log('Starting server on port 5000');
 });
 
-let players = {};
 io.on('connection', function(socket) {
     socket.on('new player', function() {
-        a.a()
-        if(Object.keys(players).length < 2){
-            players[socket.id] = {
-                x: 0,
-                y: 0
-            };
+        if(!STATE.CACHE.player1){
+            STATE.CACHE.player1 = {
+                id: socket.id,
+                side: 'white'
+            }
+        }else if(!STATE.CACHE.player2){
+            STATE.CACHE.player2 = {
+                id: socket.id,
+                side: 'black'
+            }
+        }else{
+            STATE.CACHE.spectators.push({
+                id: socket.id,
+                side: 'spectator'
+            })
         }
     });
-    socket.on('clicking', function(data) {
-        let player = players[socket.id] || {};
-    });
 });
-
-setInterval(function() {
-    io.sockets.emit('state', players);
-}, 1000 / 60);

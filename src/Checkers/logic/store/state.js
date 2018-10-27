@@ -1,4 +1,3 @@
-import { CXT } from "../../components/canvas-component.jsx";
 import * as gUtils from "../game/utils"
 
 export let MOUSE = {x:0, y:0}
@@ -23,7 +22,6 @@ export const CACHE = {
     turn: 'white',
     shouldEat: false,
     hasEaten: false,
-    playerSide: null
 }
 
 export const PIECES = [
@@ -64,6 +62,3 @@ window.addEventListener('resize', ()=>{
 
 export let socket = io();
 socket.emit('new player');
-setInterval(function() {
-    socket.emit('clicking', CACHE.clicked);
-}, 1000 / 60);
