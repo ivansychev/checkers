@@ -1,12 +1,10 @@
-let a = require('./server/utils.js')
-
-// Dependencies.
 let express = require('express');
 let http = require('http');
 let path = require('path');
 let socketIO = require('socket.io');
 
 const STATE = require('./server/state.js')
+const gameInit = require('./server/init')
 
 let app = express();
 let server = http.Server(app);
@@ -24,8 +22,12 @@ server.listen(5000, function() {
     console.log('Starting server on port 5000');
 });
 
+gameInit.initPieces()
+console.log(STATE)
+
 io.on('connection', function(socket) {
     socket.on('new player', function() {
+
         if(!STATE.CACHE.player1){
             STATE.CACHE.player1 = {
                 id: socket.id,
@@ -42,9 +44,15 @@ io.on('connection', function(socket) {
                 side: 'spectator'
             })
         }
+
         io.sockets.emit('update players', {
             player1: STATE.CACHE.player1,
             player2: STATE.CACHE.player2
         })
+
     });
+
+    socket.on('click', function(data){
+        console.log('click data: ', data)
+    })
 });

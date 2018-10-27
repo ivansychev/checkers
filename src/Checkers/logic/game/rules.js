@@ -1,4 +1,4 @@
-import { CACHE, PIECES, CELLS, CELL_SIDE, HALF_CELLS_SIDE } from "../store/state";
+import {CACHE, PIECES, CELLS, CELL_SIDE, HALF_CELLS_SIDE, socket} from "../store/state";
 import * as utils from './utils'
 import { removeSelectedCellAndPiece } from "./game";
 
@@ -12,12 +12,6 @@ export function makeQueen(piece){
 //------------------------------------
 
 export function movePiece(){
-
-    /*console.log('piece--->',
-        JSON.parse(JSON.stringify(
-            PIECES[CACHE.selected.y][CACHE.selected.x].legalMoves
-        ))
-    )*/
 
     if(utils.isSelectedDifferentToClicked()
         && utils.isCacheSelectedInitialized()
@@ -68,6 +62,8 @@ export function movePiece(){
             
             console.log('moved')
             //console.log(JSON.parse(JSON.stringify(PIECES)))
+
+            socket.emit('move piece')
         }
         else{
             alert('illegal move')

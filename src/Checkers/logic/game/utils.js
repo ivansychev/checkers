@@ -13,6 +13,7 @@ export function isMouseOutsideCanvas(){
 }
 
 export function isEmptyCell(x = COORDS.x, y = COORDS.y){
+    //TODO substitute for click
     return !PIECES[y][x];
 }
 

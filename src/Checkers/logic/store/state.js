@@ -60,7 +60,7 @@ window.addEventListener('resize', ()=>{
     gUtils.updatePiecesSize(CELL_SIDE, RADIUS)
 })
 
-export let socket = io();
+export const socket = io();
 socket.emit('new player');
 
 socket.on('update players', (data)=>{
