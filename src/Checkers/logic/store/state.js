@@ -67,3 +67,7 @@ socket.emit('new player');
 socket.on('update players', (data)=>{
     gUtils.updatePlayersData(data)
 })
+
+socket.on('moved', (data)=>{
+    movePiece(data.x, data.y, data.dx, data.dy)
+})
