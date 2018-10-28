@@ -34,3 +34,5 @@ class Queen extends Piece{
     }
 
 }
+
+module.exports = Queen
