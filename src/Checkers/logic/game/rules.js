@@ -5,13 +5,18 @@ import { removeSelectedCellAndPiece } from "./game";
 //-----------WTF WEBPACK??-----------
 // import Queen fails some files
 // temp solution -->
-import Queen from '../objects/Queen.js'
+/*import Queen from '../objects/Queen.js'
 export function makeQueen(piece){
     PIECES[piece.cellY][piece.cellX] = new Queen(piece)
-}
+}*/
 //------------------------------------
 
-export function movePiece(){
+export function movePiece(
+    x = CACHE.selected.x,
+    y = CACHE.selected.y,
+    dx = CACHE.clicked.x,
+    dy =CACHE.clicked.y
+){
 
     if(utils.isSelectedDifferentToClicked()
         && utils.isCacheSelectedInitialized()
@@ -20,12 +25,7 @@ export function movePiece(){
         console.log('is going to move')
         //console.log(JSON.parse(JSON.stringify(PIECES)))
 
-        const piece = PIECES[CACHE.selected.y][CACHE.selected.x];
-
-        const x =CACHE.selected.x,
-            y = CACHE.selected.y,
-            dx = CACHE.clicked.x,
-            dy =CACHE.clicked.y;
+        const piece = PIECES[y][x];
 
         const legalMove = piece.getLegalMove(dx, dy)
 
@@ -63,7 +63,12 @@ export function movePiece(){
             console.log('moved')
             //console.log(JSON.parse(JSON.stringify(PIECES)))
 
-            socket.emit('move piece')
+            socket.emit('move piece', {
+                    x: x,
+                    y: y,
+                    dx: dx,
+                    dy: dy
+                })
         }
         else{
             alert('illegal move')

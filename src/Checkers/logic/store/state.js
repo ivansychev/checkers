@@ -1,4 +1,5 @@
 import * as gUtils from "../game/utils"
+import {movePiece} from "../game/rules";
 
 export let MOUSE = {x:0, y:0}
 export const COORDS = {x:0, y:0}
