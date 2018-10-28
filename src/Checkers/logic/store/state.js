@@ -1,4 +1,5 @@
 import * as gUtils from "../game/utils"
+import {movePiece} from "../game/rules";
 
 export let MOUSE = {x:0, y:0}
 export const COORDS = {x:0, y:0}
@@ -60,9 +61,14 @@ window.addEventListener('resize', ()=>{
     gUtils.updatePiecesSize(CELL_SIDE, RADIUS)
 })
 
+/*
 export const socket = io();
 socket.emit('new player');
 
 socket.on('update players', (data)=>{
     gUtils.updatePlayersData(data)
 })
+
+socket.on('moved', (data)=>{
+    movePiece(data.x, data.y, data.dx, data.dy)
+})*/
