@@ -13,6 +13,7 @@ export function isMouseOutsideCanvas(){
 }
 
 export function isEmptyCell(x = COORDS.x, y = COORDS.y){
+    //TODO substitute for click
     return !PIECES[y][x];
 }
 
@@ -82,6 +83,20 @@ export function updateCacheClicked(x, y) {
     CACHE.clicked.y = Math.floor(y/CELL_SIDE);
 }
 
+
+//TODO oh my God. Fix your logic please
+//-------------------------------------------------------------------------
+export function updateCacheSelectedWithCoords(x, y) {
+    CACHE.selected.x = x;
+    CACHE.selected.y = y;
+}
+
+export function updateCacheClickedWithCoords(x, y) {
+    CACHE.clicked.x = x;
+    CACHE.clicked.y = y;
+}
+//-------------------------------------------------------------------------
+
 export function setCahceSelectedEqualToCacheClicked(){
     CACHE.selected.x = CACHE.clicked.x
     CACHE.selected.y = CACHE.clicked.y
@@ -95,8 +110,13 @@ export function resetCacheSelected() {
 export function toggleTurn() {
     CACHE.turn = CACHE.turn === 'white' ? 'black' : 'white'
 
-    //TODO: remove in he future
-    window.tempComponent.setTurn(CACHE.turn)
+    //TODO: remove in the future
+    window.turnComponent.setTurn(CACHE.turn)
+}
+
+export function updatePlayersData(data){
+    //TODO: remove in the future
+    window.playersComponent.setPlayers(data)
 }
 
 export function initLegalMoves() {

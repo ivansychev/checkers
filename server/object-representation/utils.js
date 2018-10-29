@@ -1,41 +1,42 @@
-import {PIECES, CACHE} from "../store/state";
-import * as gUtils from "../game/utils";
+const STATE = require('../state')
+const CACHE = STATE.CACHE
+const PIECES = STATE.PIECES
 
-export function canHitToTheRight(x, y, side){
+function canHitToTheRight(x, y, side){
     let rightPiece, afterRightPieceIsEmpty;
     if(side === 'white'){
         if(x<6) rightPiece = PIECES[y-1][x+1]
         if(rightPiece && side !== rightPiece.getSide())
-            afterRightPieceIsEmpty = gUtils.isEmptyCell(x+2, y-2)
+            afterRightPieceIsEmpty = isEmptyCell(x+2, y-2)
     }
     if(side === 'black'){
         if(x<6) rightPiece = PIECES[y+1][x+1]
         if(rightPiece && side !== rightPiece.getSide())
-            afterRightPieceIsEmpty = gUtils.isEmptyCell(x+2, y+2)
+            afterRightPieceIsEmpty = isEmptyCell(x+2, y+2)
     }
     if(afterRightPieceIsEmpty) CACHE.shouldEat = true
     return afterRightPieceIsEmpty
 }
 
-export function canHitToTheLeft(x, y, side){
+function canHitToTheLeft(x, y, side){
     let leftPiece, afterLeftPieceIsEmpty;
     if(side === 'white'){
         if(x>1) leftPiece = PIECES[y-1][x-1]
         if(leftPiece && side !== leftPiece.getSide())
-            afterLeftPieceIsEmpty = gUtils.isEmptyCell(x-2, y-2)
+            afterLeftPieceIsEmpty = isEmptyCell(x-2, y-2)
 
     }
     if(side === 'black') {
         if(x>1) leftPiece = PIECES[y+1][x-1]
         if(leftPiece && side !== leftPiece.getSide())
-            afterLeftPieceIsEmpty = gUtils.isEmptyCell(x-2, y+2)
+            afterLeftPieceIsEmpty = isEmptyCell(x-2, y+2)
 
     }
     if(afterLeftPieceIsEmpty) CACHE.shouldEat = true
     return afterLeftPieceIsEmpty
 }
 
-export function canMoveToTheRight(x, y, side){
+function canMoveToTheRight(x, y, side){
     let rightPiece;
     if(side === 'white')
         if(x<7) rightPiece = PIECES[y-1][x+1]
@@ -44,7 +45,7 @@ export function canMoveToTheRight(x, y, side){
     return rightPiece === 0
 }
 
-export function canMoveToTheLeft(x, y, side){
+function canMoveToTheLeft(x, y, side){
     let leftPiece;
     if(side === 'white')
         if(x>0) leftPiece = PIECES[y-1][x-1]
@@ -53,7 +54,7 @@ export function canMoveToTheLeft(x, y, side){
     return leftPiece === 0
 }
 
-export function fillQueenLegalMoves(x, y, legalMoves){
+function fillQueenLegalMoves(x, y, legalMoves){
     let lu, ld, ru, rd
 
     if(y>0){
@@ -73,12 +74,12 @@ export function fillQueenLegalMoves(x, y, legalMoves){
 
 }
 
-export function fillQueenEatingMoves(x, y, side, legalMoves){
+function fillQueenEatingMoves(x, y, side, legalMoves){
     let lu, ld, ru, rd
 
     if(y>1){
         ru = PIECES[y-1][x+1]
-        if(x<6 && ru && side !== ru.getSide() && gUtils.isEmptyCell(x+2, y-2)) {
+        if(x<6 && ru && side !== ru.getSide() && isEmptyCell(x+2, y-2)) {
             legalMoves.push({
                 x: x + 2,
                 y: y - 2,
@@ -90,7 +91,7 @@ export function fillQueenEatingMoves(x, y, side, legalMoves){
             CACHE.shouldEat = true
         }
         lu = PIECES[y-1][x-1]
-        if(x>1 && lu && side !== lu.getSide() && gUtils.isEmptyCell(x-2, y-2)) {
+        if(x>1 && lu && side !== lu.getSide() && isEmptyCell(x-2, y-2)) {
             legalMoves.push({
                 x: x - 2,
                 y: y - 2,
@@ -105,7 +106,7 @@ export function fillQueenEatingMoves(x, y, side, legalMoves){
 
     if(y<6){
         ld = PIECES[y+1][x-1]
-        if(x>1 && ld && side !== ld.getSide() && gUtils.isEmptyCell(x-2, y+2)){
+        if(x>1 && ld && side !== ld.getSide() && isEmptyCell(x-2, y+2)){
             legalMoves.push({
                 x: x-2,
                 y: y+2,
@@ -118,7 +119,7 @@ export function fillQueenEatingMoves(x, y, side, legalMoves){
         }
 
         rd = PIECES[y+1][x+1]
-        if(x<6 && rd && side !== rd.getSide() && gUtils.isEmptyCell(x+2, y+2)){
+        if(x<6 && rd && side !== rd.getSide() && isEmptyCell(x+2, y+2)){
             legalMoves.push({
                 x: x+2,
                 y: y+2,
@@ -130,4 +131,17 @@ export function fillQueenEatingMoves(x, y, side, legalMoves){
             CACHE.shouldEat = true
         }
     }
+}
+
+function isEmptyCell(x = CACHE.clicked.x, y = CACHE.clicked.y){
+    return !PIECES[y][x];
+}
+
+module.exports = {
+    canHitToTheRight: canHitToTheRight,
+    canHitToTheLeft: canHitToTheLeft,
+    canMoveToTheRight: canMoveToTheRight,
+    canMoveToTheLeft: canMoveToTheLeft,
+    fillQueenLegalMoves: fillQueenLegalMoves,
+    fillQueenEatingMoves: fillQueenEatingMoves
 }

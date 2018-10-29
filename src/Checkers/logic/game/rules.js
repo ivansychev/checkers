@@ -1,23 +1,18 @@
-import { CACHE, PIECES, CELLS, CELL_SIDE, HALF_CELLS_SIDE } from "../store/state";
+import {CACHE, PIECES} from "../store/state";
 import * as utils from './utils'
-import { removeSelectedCellAndPiece } from "./game";
+import { removeSelectedCellAndPiece, socket } from "./game";
+import { makeQueen } from "../objects/Queen";
+import {logCache} from "../../logger/log";
 
-//-----------WTF WEBPACK??-----------
-// import Queen fails some files
-// temp solution -->
-import Queen from '../objects/Queen.js'
-export function makeQueen(piece){
-    PIECES[piece.cellY][piece.cellX] = new Queen(piece)
-}
-//------------------------------------
+export function movePiece(
+    x = CACHE.selected.x,
+    y = CACHE.selected.y,
+    dx = CACHE.clicked.x,
+    dy =CACHE.clicked.y
+){
 
-export function movePiece(){
-
-    /*console.log('piece--->',
-        JSON.parse(JSON.stringify(
-            PIECES[CACHE.selected.y][CACHE.selected.x].legalMoves
-        ))
-    )*/
+    console.log('trying to move bruh')
+    logCache()
 
     if(utils.isSelectedDifferentToClicked()
         && utils.isCacheSelectedInitialized()
@@ -26,12 +21,7 @@ export function movePiece(){
         console.log('is going to move')
         //console.log(JSON.parse(JSON.stringify(PIECES)))
 
-        const piece = PIECES[CACHE.selected.y][CACHE.selected.x];
-
-        const x =CACHE.selected.x,
-            y = CACHE.selected.y,
-            dx = CACHE.clicked.x,
-            dy =CACHE.clicked.y;
+        const piece = PIECES[y][x];
 
         const legalMove = piece.getLegalMove(dx, dy)
 
@@ -68,6 +58,13 @@ export function movePiece(){
             
             console.log('moved')
             //console.log(JSON.parse(JSON.stringify(PIECES)))
+
+            socket.emit('move piece', {
+                    x: x,
+                    y: y,
+                    dx: dx,
+                    dy: dy
+                })
         }
         else{
             alert('illegal move')

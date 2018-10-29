@@ -7,6 +7,7 @@ export default class Turn extends React.Component{
         this.state = {
             turn: 'white'
         }
+
         this.setTurn = this.setTurn.bind(this)
     }
 

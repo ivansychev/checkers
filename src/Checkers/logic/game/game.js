@@ -3,7 +3,7 @@ import { draw } from "./render";
 import { CXT } from '../../components/canvas-component.jsx'
 import { MOUSE, CACHE, COORDS, CELLS, PIECES } from "../store/state";
 import * as utils from "./utils"
-import {movePiece} from "./rules";
+import { movePiece } from "./rules";
 
 export function launchGame(){
     initGame()
@@ -118,3 +118,17 @@ export function removeSelectedCellAndPiece(){
     removeSelectedCell()
     removeSelectedPiece()
 }
+
+export const socket = io();
+socket.emit('new player');
+
+socket.on('update players', (data)=>{
+    utils.updatePlayersData(data)
+})
+
+socket.on('moved', (data)=>{
+    console.log('MOVED!!!')
+    utils.updateCacheSelectedWithCoords(data.x, data.y)
+    utils.updateCacheClickedWithCoords(data.dx, data.dy)
+    movePiece(data.x, data.y, data.dx, data.dy)
+})
