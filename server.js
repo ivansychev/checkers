@@ -26,6 +26,7 @@ server.listen(5000, function() {
 });
 
 gameInit.initPieces()
+gameInit.initLegalMoves()
 
 io.on('connection', function(socket) {
     socket.on('new player', function() {
@@ -56,7 +57,12 @@ io.on('connection', function(socket) {
 
     socket.on('move piece', function(data){
         const piece = PIECES[data.y][data.x];
-        const legalMove = piece.getLegalMove(data.dx, data.dy)
+
+        console.log(piece)
+
+        //TODO fix logic here
+        const legalMove = piece && piece.getLegalMove(data.dx, data.dy)
+
         if(legalMove){
             utils.eatPieceIfExists(legalMove)
             utils.movePiece(piece, data.x, data.y, data.dx, data.dy)
@@ -76,6 +82,9 @@ io.on('connection', function(socket) {
             if(piece.checkIfBecameQueen()){
                 utils.makeQueen(piece)
             }
+
+            //TODO change logic
+            gameInit.initLegalMoves()
 
             io.sockets.emit('moved', data)
         }else{

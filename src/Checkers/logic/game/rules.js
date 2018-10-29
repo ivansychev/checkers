@@ -1,7 +1,8 @@
-import {CACHE, PIECES, socket} from "../store/state";
+import {CACHE, PIECES} from "../store/state";
 import * as utils from './utils'
-import { removeSelectedCellAndPiece } from "./game";
+import { removeSelectedCellAndPiece, socket } from "./game";
 import { makeQueen } from "../objects/Queen";
+import {logCache} from "../../logger/log";
 
 export function movePiece(
     x = CACHE.selected.x,
@@ -9,6 +10,9 @@ export function movePiece(
     dx = CACHE.clicked.x,
     dy =CACHE.clicked.y
 ){
+
+    console.log('trying to move bruh')
+    logCache()
 
     if(utils.isSelectedDifferentToClicked()
         && utils.isCacheSelectedInitialized()
@@ -55,12 +59,12 @@ export function movePiece(
             console.log('moved')
             //console.log(JSON.parse(JSON.stringify(PIECES)))
 
-            /*socket.emit('move piece', {
+            socket.emit('move piece', {
                     x: x,
                     y: y,
                     dx: dx,
                     dy: dy
-                })*/
+                })
         }
         else{
             alert('illegal move')

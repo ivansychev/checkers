@@ -119,14 +119,16 @@ export function removeSelectedCellAndPiece(){
     removeSelectedPiece()
 }
 
-/*
 export const socket = io();
 socket.emit('new player');
 
 socket.on('update players', (data)=>{
-    gUtils.updatePlayersData(data)
+    utils.updatePlayersData(data)
 })
 
 socket.on('moved', (data)=>{
+    console.log('MOVED!!!')
+    utils.updateCacheSelectedWithCoords(data.x, data.y)
+    utils.updateCacheClickedWithCoords(data.dx, data.dy)
     movePiece(data.x, data.y, data.dx, data.dy)
-})*/
+})

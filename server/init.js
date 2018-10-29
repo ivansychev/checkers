@@ -18,6 +18,15 @@ function initPieces(){
     })
 }
 
+function initLegalMoves() {
+    PIECES.forEach((row) => {
+        row.forEach((value) => {
+            if(value) value.fillLegalMoves()
+        })
+    })
+}
+
 module.exports = {
-    initPieces: initPieces
+    initPieces: initPieces,
+    initLegalMoves: initLegalMoves
 }
