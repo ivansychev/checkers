@@ -1,5 +1,5 @@
 import Piece from './Piece'
-import {CACHE} from "../store/state";
+import {CACHE, PIECES} from "../store/state";
 import * as oUtils from "./utils";
 import {pieceStyles} from "../store/styles";
 
@@ -52,4 +52,8 @@ export default class Queen extends Piece{
         }
     }
 
+}
+
+export function makeQueen(piece){
+    PIECES[piece.cellY][piece.cellX] = new Queen(piece)
 }
