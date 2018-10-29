@@ -26,11 +26,11 @@ export default class Queen extends Piece{
         const style = pieceStyles[this.side].themes[this.theme];
 
         ctx.beginPath()
-        ctx.arc(this.x, this.y, this.radius, 0 , 2*PI);
+        ctx.arc(this.x, this.y, this.radius, 0 , 2 * PI);
         ctx.fillStyle = style.fillStyle;
         ctx.fill();
         ctx.strokeStyle = 'red';
-        ctx.lineWidth = this.radius*0.25;
+        ctx.lineWidth = this.radius * 0.25;
         ctx.stroke();
         ctx.closePath()
     }
