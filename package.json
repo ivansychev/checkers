@@ -41,7 +41,8 @@
   "scripts": {
     "dev": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
-    "server": "node server.js",
+    "dev-build": "webpack --mode development",
+    "server": "nodemon --watch dist server.js",
     "lint": "eslint src/** src/**/**; exit 0",
     "lint-fix": "eslint src/** src/**/** --fix; exit 0"
   }

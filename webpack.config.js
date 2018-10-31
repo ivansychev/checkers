@@ -13,6 +13,7 @@ module.exports = {
         path: path.resolve(__dirname, "dist"),
         filename: '[name].[chunkhash].js'
     },
+    watch: true,
     module: {
         rules: [
             {
@@ -62,7 +63,7 @@ module.exports = {
         ]
     },
     plugins: [
-        //new CleanWebpackPlugin('dist', {} ),
+        new CleanWebpackPlugin('dist', {} ),
         //new MiniCssExtractPlugin({filename: 'style.[contenthash].css'}),
         new HtmlWebpackPlugin({
             inject: false,
