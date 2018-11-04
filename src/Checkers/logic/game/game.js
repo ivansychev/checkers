@@ -38,11 +38,11 @@ function animate(){
 }
 
 export function pieceSelectionRoutine(){
-    if(utils.isBlackCell() && utils.isPlayersPiece()){
+    if(utils.isBlackCell() && utils.isPlayersPiece() && utils.isPlayersTurn()){
         removeSelectedCell()
         removeSelectedPiece()
     }
-    if(!utils.isEmptyCell() && utils.isPlayersPiece()){
+    if(!utils.isEmptyCell() && utils.isPlayersPiece() && utils.isPlayersTurn()){
         setSelectedCell()
         setSelectedPiece()
         utils.updateCacheSelected(MOUSE.x, MOUSE.y)
@@ -121,6 +121,10 @@ export function removeSelectedCellAndPiece(){
 
 export const socket = io();
 socket.emit('new player');
+
+socket.on('setSide', (side)=>{
+    CACHE.side = side
+})
 
 socket.on('update players', (data)=>{
     utils.updatePlayersData(data)

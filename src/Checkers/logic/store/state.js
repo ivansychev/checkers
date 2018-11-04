@@ -19,6 +19,7 @@ export const CACHE = {
         x: null,
         y: null
     },
+    side: null,
     turn: 'white',
     shouldEat: false,
     hasEaten: false,

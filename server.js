@@ -36,11 +36,13 @@ io.on('connection', function(socket) {
                 id: socket.id,
                 side: 'white'
             }
+            socket.emit('setSide', 'white')
         }else if(!CACHE.player2){
             CACHE.player2 = {
                 id: socket.id,
                 side: 'black'
             }
+            socket.emit('setSide', 'black')
         }else{
             CACHE.spectators.push({
                 id: socket.id,

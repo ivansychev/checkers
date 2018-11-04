@@ -49,8 +49,16 @@ export function getTurnColor(){
     return CACHE.turn
 }
 
+export function getPlayersSide(){
+    return CACHE.side
+}
+
 export function isPlayersPiece(){
     return getTurnColor() === getPieceColor(getClickedPiece());
+}
+
+export function isPlayersTurn(){
+    return getTurnColor() === getPlayersSide()
 }
 
 export function isOpponentsPiece(){
