@@ -127,7 +127,7 @@ socket.on('update players', (data)=>{
 })
 
 socket.on('moved', (data)=>{
-    console.log('MOVED!!!')
+    console.log('MOVED!!!', data)
     utils.updateCacheSelectedWithCoords(data.x, data.y)
     utils.updateCacheClickedWithCoords(data.dx, data.dy)
     movePiece(data.x, data.y, data.dx, data.dy)

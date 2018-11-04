@@ -86,7 +86,7 @@ io.on('connection', function(socket) {
             //TODO change logic
             gameInit.initLegalMoves()
 
-            io.sockets.emit('moved', data)
+            socket.broadcast.emit('moved', data)
         }else{
             console.log('ILLEGAL ATTEMPT!')
             socket.emit('Illegal move')
