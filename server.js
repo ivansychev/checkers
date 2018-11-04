@@ -65,7 +65,7 @@ io.on('connection', function(socket) {
         //TODO fix logic here
         const legalMove = piece && piece.getLegalMove(data.dx, data.dy)
 
-        if(legalMove){
+        if(legalMove && piece.getSide() === CACHE.turn){
             utils.eatPieceIfExists(legalMove)
             utils.movePiece(piece, data.x, data.y, data.dx, data.dy)
 
