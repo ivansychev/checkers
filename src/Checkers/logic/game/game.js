@@ -130,5 +130,9 @@ socket.on('moved', (data)=>{
     console.log('MOVED!!!', data)
     utils.updateCacheSelectedWithCoords(data.x, data.y)
     utils.updateCacheClickedWithCoords(data.dx, data.dy)
-    movePiece(data.x, data.y, data.dx, data.dy)
+    movePiece(data.x, data.y, data.dx, data.dy, true)
+})
+
+socket.on('illegal', (data)=>{
+    console.log('received illegal move', data)
 })

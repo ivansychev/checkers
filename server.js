@@ -89,7 +89,7 @@ io.on('connection', function(socket) {
             socket.broadcast.emit('moved', data)
         }else{
             console.log('ILLEGAL ATTEMPT!')
-            socket.emit('Illegal move')
+            socket.emit('illegal', data)
         }
     })
 });

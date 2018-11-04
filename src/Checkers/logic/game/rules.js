@@ -8,7 +8,8 @@ export function movePiece(
     x = CACHE.selected.x,
     y = CACHE.selected.y,
     dx = CACHE.clicked.x,
-    dy =CACHE.clicked.y
+    dy =CACHE.clicked.y,
+    onResponse = false
 ){
 
     console.log('trying to move bruh')
@@ -59,12 +60,15 @@ export function movePiece(
             console.log('moved')
             //console.log(JSON.parse(JSON.stringify(PIECES)))
 
-            socket.emit('move piece', {
+            if(!onResponse){
+                socket.emit('move piece', {
                     x: x,
                     y: y,
                     dx: dx,
                     dy: dy
                 })
+            }
+
         }
         else{
             alert('illegal move')
