@@ -83,11 +83,11 @@ function setHoveredCell(){
         if(utils.hasCoordsChanged())
         {
             const cell = CELLS[COORDS.y][COORDS.x];
-            cell.hovered = true
+            if(cell) cell.hovered = true
 
             if(utils.isCacheCoordsInitialized()){
                 const cacheCell = CELLS[CACHE.coords.y][CACHE.coords.x];
-                cacheCell.hovered = false
+                if(cacheCell) cacheCell.hovered = false
             }
         }
 }
