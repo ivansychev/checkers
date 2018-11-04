@@ -28,7 +28,7 @@ export function movePiece(
 
         if(legalMove){
 
-            removeSelectedCellAndPiece()
+            if(!onResponse) removeSelectedCellAndPiece()
             utils.eatPieceIfExists(legalMove)
             utils.movePiece(piece)
 

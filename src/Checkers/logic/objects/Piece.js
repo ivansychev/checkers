@@ -137,8 +137,14 @@ export default class Piece{
 
     getLegalMove(dx, dy){
         return CACHE.shouldEat
-            ? this.legalMoves.find(value=> (value.x === dx && value.y === dy && value.eat))
-            : this.legalMoves.find(value=> (value.x === dx && value.y === dy))
+            ? this.legalMoves.find((value) => (value.x === dx && value.y === dy && value.eat))
+            : this.legalMoves.find((value) => (value.x === dx && value.y === dy))
+    }
+
+    getMovingOptions(){
+        return CACHE.shouldEat
+            ? this.legalMoves.filter((value) => (value.eat))
+            : this.legalMoves
     }
 
 }
