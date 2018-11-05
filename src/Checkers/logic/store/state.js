@@ -25,7 +25,7 @@ export const CACHE = {
     hasEaten: false,
 }
 
-export const PIECES = [
+const piecesPosAtTheGameStart = [
     [0,2,0,2,0,2,0,2],
     [2,0,2,0,2,0,2,0],
     [0,2,0,2,0,2,0,2],
@@ -36,6 +36,12 @@ export const PIECES = [
     [1,0,1,0,1,0,1,0]
 
 ]
+
+export function resetPieces(){
+    PIECES = piecesPosAtTheGameStart.splice()
+}
+
+export let PIECES = piecesPosAtTheGameStart.slice()
 
 export const CELLS = [
     [0,1,0,1,0,1,0,1],

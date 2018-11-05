@@ -12,3 +12,19 @@
   font-family: 'Open Sans', sans-serif;
 
 }
+
+.newGameButton{
+  margin: 10px;
+}
+
+.red{
+    color: red
+}
+
+.green{
+    color: green
+}
+
+.border{
+    border: 2px solid black;
+}

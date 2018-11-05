@@ -15,7 +15,14 @@ const CACHE = {
     spectators: []
 }
 
-const PIECES = [
+const GAME_STATE = {
+    newGame:{
+        player1: false,
+        player2: false
+    }
+}
+
+const piecesPosAtTheGameStart = [
     [0,2,0,2,0,2,0,2],
     [2,0,2,0,2,0,2,0],
     [0,2,0,2,0,2,0,2],
@@ -26,6 +33,12 @@ const PIECES = [
     [1,0,1,0,1,0,1,0]
 
 ]
+
+function resetPieces(){
+    PIECES = piecesPosAtTheGameStart.splice()
+}
+
+let PIECES = piecesPosAtTheGameStart.slice()
 
 const CELLS = [
     [0,1,0,1,0,1,0,1],
@@ -41,5 +54,7 @@ const CELLS = [
 module.exports =  {
     CACHE: CACHE,
     PIECES: PIECES,
-    CELLS: CELLS
+    CELLS: CELLS,
+    GAME_STATE: GAME_STATE,
+    resetPieces: resetPieces
 }

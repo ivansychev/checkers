@@ -41,8 +41,6 @@ export default class CanvasComponent extends React.Component{
         pieceMovementRoutine()
         logCache()
         console.log('-----------------------')
-
-
     }
 
     render(){

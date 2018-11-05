@@ -1,7 +1,7 @@
 import { drawBoard, drawPieces } from "./init"
 import { draw } from "./render";
 import { CXT } from '../../components/canvas-component.jsx'
-import { MOUSE, CACHE, COORDS, CELLS, PIECES } from "../store/state";
+import {MOUSE, CACHE, COORDS, CELLS, PIECES, resetPieces} from "../store/state";
 import * as utils from "./utils"
 import { movePiece } from "./rules";
 
@@ -12,6 +12,11 @@ export function launchGame(){
 
 function initGame(){
     drawBoard(CXT)
+    drawPieces(CXT)
+    utils.initLegalMoves()
+}
+
+function resetGame(){
     drawPieces(CXT)
     utils.initLegalMoves()
 }
@@ -162,4 +167,14 @@ socket.on('moved', (data)=>{
 
 socket.on('illegal', (data)=>{
     console.log('received illegal move', data)
+})
+
+socket.on('newGameRequest', (data) => {
+    utils.updateNewGameButonState(data)
+})
+
+socket.on('startNewGame', ()=>{
+    resetPieces()
+    resetGame()
+    utils.resetNewGameButtonState()
 })
