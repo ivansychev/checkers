@@ -62,10 +62,13 @@ io.on('connection', function(socket) {
     socket.on('move piece', function(data){
         const piece = PIECES[data.y][data.x];
 
-        console.log(piece)
-
         //TODO fix logic here
         const legalMove = piece && piece.getLegalMove(data.dx, data.dy)
+
+        console.log('---------------------------')
+        console.log(legalMove)
+        console.log(piece)
+        console.log('---------------------------')
 
         if(legalMove && piece.getSide() === CACHE.turn){
             utils.eatPieceIfExists(legalMove)
@@ -102,6 +105,7 @@ io.on('connection', function(socket) {
         Object.assign(GAME_STATE.newGame, data)
         if(GAME_STATE.newGame.player1 && GAME_STATE.newGame.player2){
             io.sockets.emit('startNewGame')
+            console.log("!@E!@E!@E")
             resetPieces()
             gameInit.initPieces()
             gameInit.initLegalMoves()

@@ -4,6 +4,9 @@ const PIECES = STATE.PIECES
 const Piece = require('./object-representation/Piece')
 
 function initPieces(){
+    console.log('---------')
+    console.log(PIECES)
+    console.log('---------')
     PIECES.forEach((row, i) => {
         row.forEach((val, j, self) => {
             if(val !== 0){

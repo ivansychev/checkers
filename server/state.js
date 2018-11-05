@@ -35,10 +35,12 @@ const piecesPosAtTheGameStart = [
 ]
 
 function resetPieces(){
-    PIECES = piecesPosAtTheGameStart.splice()
+    PIECES = JSON.parse(JSON.stringify( piecesPosAtTheGameStart ))
+    CACHE.turn = 'white'
+    console.log(PIECES)
 }
 
-let PIECES = piecesPosAtTheGameStart.slice()
+let PIECES = JSON.parse(JSON.stringify( piecesPosAtTheGameStart ))
 
 const CELLS = [
     [0,1,0,1,0,1,0,1],

@@ -16,7 +16,6 @@ export function drawBoard(ctx){
                 false
             );
             self[j] = cell;
-            console.log(cell)
             cell.drawSelf(ctx);
         })
     })

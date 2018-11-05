@@ -17,6 +17,8 @@ function initGame(){
 }
 
 function resetGame(){
+    resetPieces()
+    console.log(PIECES)
     drawPieces(CXT)
     utils.initLegalMoves()
 }
@@ -174,7 +176,6 @@ socket.on('newGameRequest', (data) => {
 })
 
 socket.on('startNewGame', ()=>{
-    resetPieces()
     resetGame()
     utils.resetNewGameButtonState()
 })

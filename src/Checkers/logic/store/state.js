@@ -38,10 +38,11 @@ const piecesPosAtTheGameStart = [
 ]
 
 export function resetPieces(){
-    PIECES = piecesPosAtTheGameStart.splice()
+    PIECES = JSON.parse(JSON.stringify( piecesPosAtTheGameStart ))
+    CACHE.turn = 'white'
 }
 
-export let PIECES = piecesPosAtTheGameStart.slice()
+export let PIECES = JSON.parse(JSON.stringify( piecesPosAtTheGameStart ))
 
 export const CELLS = [
     [0,1,0,1,0,1,0,1],
