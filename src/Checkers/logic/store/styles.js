@@ -49,7 +49,7 @@ export const cellStyles = {
             aqua:{
                 fillStyle : "rgba(0,53,107,1)",
                 hoveredStyle: "rgba(0,53,107,0.5)",
-                selectedStyle: "rgba(236, 229, 135, 0.9)"
+                selectedStyle: "#84b3ff"
             },
             lava:{
                 fillStyle : "#dd4e1a",
