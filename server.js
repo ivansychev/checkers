@@ -105,7 +105,6 @@ io.on('connection', function(socket) {
         Object.assign(GAME_STATE.newGame, data)
         if(GAME_STATE.newGame.player1 && GAME_STATE.newGame.player2){
             io.sockets.emit('startNewGame')
-            console.log("!@E!@E!@E")
             resetPieces()
             gameInit.initPieces()
             gameInit.initLegalMoves()

@@ -35,7 +35,13 @@ const piecesPosAtTheGameStart = [
 ]
 
 function resetPieces(){
-    PIECES = JSON.parse(JSON.stringify( piecesPosAtTheGameStart ))
+
+    piecesPosAtTheGameStart.forEach((row, i) => {
+        row.forEach((val, j, self) => {
+            PIECES[i][j] = val
+        })
+    })
+
     CACHE.turn = 'white'
     console.log(PIECES)
 }
