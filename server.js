@@ -6,6 +6,8 @@ let socketIO = require('socket.io');
 const STATE = require('./server/state')
 const CACHE = STATE.CACHE
 const PIECES = STATE.PIECES
+const GAME_STATE = STATE.GAME_STATE
+const resetPieces = STATE.resetPieces
 const gameInit = require('./server/init')
 const utils = require('./server/utils')
 
@@ -60,10 +62,13 @@ io.on('connection', function(socket) {
     socket.on('move piece', function(data){
         const piece = PIECES[data.y][data.x];
 
-        console.log(piece)
-
         //TODO fix logic here
         const legalMove = piece && piece.getLegalMove(data.dx, data.dy)
+
+        console.log('---------------------------')
+        console.log(legalMove)
+        console.log(piece)
+        console.log('---------------------------')
 
         if(legalMove && piece.getSide() === CACHE.turn){
             utils.eatPieceIfExists(legalMove)
@@ -92,6 +97,21 @@ io.on('connection', function(socket) {
         }else{
             console.log('ILLEGAL ATTEMPT!')
             socket.emit('illegal', data)
+        }
+    })
+
+    socket.on('newGame', (data)=>{
+        socket.broadcast.emit('newGameRequest', data)
+        Object.assign(GAME_STATE.newGame, data)
+        if(GAME_STATE.newGame.player1 && GAME_STATE.newGame.player2){
+            io.sockets.emit('startNewGame')
+            resetPieces()
+            gameInit.initPieces()
+            gameInit.initLegalMoves()
+            Object.assign(GAME_STATE.newGame, {
+                player1: false,
+                player2: false
+            })
         }
     })
 });

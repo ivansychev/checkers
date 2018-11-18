@@ -127,6 +127,16 @@ export function updatePlayersData(data){
     window.playersComponent.setPlayers(data)
 }
 
+export function updateNewGameButonState(data){
+    //TODO: remove in the future
+    window.newGameButton.updateState(data)
+}
+
+export function resetNewGameButtonState(){
+    //TODO: remove in the future
+    window.newGameButton.resetState()
+}
+
 export function initLegalMoves() {
     PIECES.forEach((row) => {
         row.forEach((value) => {

@@ -5,6 +5,7 @@ import Turn from "./turn.jsx"
 
 import style from "./style.css"
 import Players from "./players.jsx";
+import { NewGameButton } from "./new-game-button.jsx";
 
 export default class Checkers extends React.Component{
 
@@ -14,6 +15,7 @@ export default class Checkers extends React.Component{
                 <Turn ref={(turnComponent) => {window.turnComponent = turnComponent}} />
                 <Players ref={(playersComponent) => {window.playersComponent = playersComponent}}/>
                 <CanvasComponent/>
+                <NewGameButton ref={(newGameButton) => {window.newGameButton = newGameButton}}/>
             </div>
         )
     }
