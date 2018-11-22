@@ -1,6 +1,8 @@
-import {HALF_CELLS_SIDE, PIECES, state} from './state'
+import {state} from '../state'
 
-function updateState(action, state = state){
+const initialState = state
+
+export function updateState(action, state = initialState){
     switch(action.type){
         case 'MUTATE_MOUSE_CURRENT': {
             state.mouse.current.x = action.data.x
@@ -11,6 +13,15 @@ function updateState(action, state = state){
             state.mouse.cached.x = action.data.x
             state.mouse.cached.y = action.data.y
             break;
+        }
+        case 'MUTATE_COORDS_CURRENT': {
+            state.coords.current.x = action.data.x
+            state.coords.current.y = action.data.y
+            break;
+        }
+        case 'MUTATE_COORDS_CACHE': {
+            state.coords.cached.x = action.data.x
+            state.coords.cached.y = action.data.y
         }
         case 'UPDATE_COORDS_CURRENT': {
             state = {
@@ -60,6 +71,7 @@ function updateState(action, state = state){
                 }
 
             }
+            debugger
             break;
         }
         case 'SET_CACHE_SELECTED_EQUAL_TO_CACHE_CLICKED': {

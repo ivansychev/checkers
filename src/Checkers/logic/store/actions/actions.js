@@ -30,6 +30,22 @@ export const updateMouseCache = (x, y) => ({
     }
 })
 
+export const mutateCoordsCurrent = (x, y) => ({
+    type: 'MUTATE_COORDS_CURRENT',
+    data:{
+        x: x,
+        y: y
+    }
+})
+
+export const mutateCoordsCache = (x, y) => ({
+    type: 'MUTATE_COORDS_CACHE',
+    data:{
+        x: x,
+        y: y
+    }
+})
+
 export const updateCoordsCurrent = (x, y) => ({
     type: 'UPDATE_COORDS_CURRENT',
     data:{
