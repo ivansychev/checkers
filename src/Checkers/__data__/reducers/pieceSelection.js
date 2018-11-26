@@ -1,4 +1,15 @@
-export const updatePieceSelection = (state = [], action) => {
+const initialState = {
+    selected:{
+        x: null,
+        y: null
+    },
+    clicked:{
+        x: null,
+        y: null
+    }
+}
+
+export const updatePieceSelection = (state = initialState, action) => {
     switch(action.type){
         case 'UPDATE_SELECTED': {
             return [

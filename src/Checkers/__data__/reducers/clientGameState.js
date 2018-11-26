@@ -1,4 +1,11 @@
-export const updateClientGameState = (state = [], action) => {
+const initialState = {
+    side: null,
+    turn: 'white',
+    shouldEat: false,
+    hasEaten: false,
+}
+
+export const updateClientGameState = (state = initialState, action) => {
     switch(action.type){
         case 'TOGGLE_TURN': {
             return [

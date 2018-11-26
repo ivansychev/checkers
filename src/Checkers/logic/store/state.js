@@ -11,21 +11,6 @@ const piecesPosAtTheGameStart = [
     [1,0,1,0,1,0,1,0]
 ]
 
-export const cellsPosAtTheGameStart = [
-    [0,1,0,1,0,1,0,1],
-    [1,0,1,0,1,0,1,0],
-    [0,1,0,1,0,1,0,1],
-    [1,0,1,0,1,0,1,0],
-    [0,1,0,1,0,1,0,1],
-    [1,0,1,0,1,0,1,0],
-    [0,1,0,1,0,1,0,1],
-    [1,0,1,0,1,0,1,0]
-]
-
-const initialCellSide = gUtils.getSideLength()/8;
-const halfCellSide = initialCellSide/2;
-const initialRadius = halfCellSide*0.8;
-
 export const state = {
     mouse: {
         current: {
@@ -46,28 +31,8 @@ export const state = {
             x: 0,
             y: 0
         }
-    },
-    selected:{
-        x: null,
-        y: null
-    },
-    clicked:{
-        x: null,
-        y: null
-    },
-    side: null,
-    turn: 'white',
-    shouldEat: false,
-    hasEaten: false,
-    pieces: JSON.parse(JSON.stringify( piecesPosAtTheGameStart )),
-    cells: JSON.parse(JSON.stringify( cellsPosAtTheGameStart )),
-    styles:{
-        cellSide: initialCellSide,
-        halfCellSide: halfCellSide,
-        radius: initialRadius
     }
 }
-
 
 export let MOUSE = {x:0, y:0}
 export const COORDS = {x:0, y:0}
