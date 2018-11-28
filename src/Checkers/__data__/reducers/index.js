@@ -1,8 +1,8 @@
-import * as pieceSelection from './pieceSelection'
-import * as clientGameState from './clientGameState'
-import * as piecesState from './piecesState'
-import * as cellsState from './cellsState'
-import * as stylesState from './stylesState'
+import { updatePieceSelection as pieceSelection } from './pieceSelection'
+import { updateClientGameState as clientGameState } from './clientGameState'
+import { updatePiecesState as piecesState } from './piecesState'
+import { updateCellsState as cellsState } from './cellsState'
+import { updateStylesState as stylesState } from './stylesState'
 
 export {
     pieceSelection,
@@ -10,5 +10,4 @@ export {
     piecesState,
     cellsState,
     stylesState
-
 }
