@@ -5,6 +5,9 @@ import {MOUSE, CACHE, COORDS, CELLS, PIECES, resetPieces} from "../store/state";
 import * as utils from "./utils"
 import { movePiece } from "./rules";
 
+import { store } from "../../__data__/store";
+import { piecesState } from "../../__data__/actions"
+
 export function launchGame(){
     initGame()
     startGame()
@@ -14,6 +17,9 @@ function initGame(){
     drawBoard(CXT)
     drawPieces(CXT)
     utils.initLegalMoves()
+
+    //---
+    store.dispatch(piecesState.initLegalMoves())
 }
 
 function resetGame(){

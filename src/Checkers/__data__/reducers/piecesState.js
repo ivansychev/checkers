@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import Piece from "../../logic/objects/Piece";
 
 const piecesPosAtTheGameStart = [
@@ -12,13 +13,13 @@ const piecesPosAtTheGameStart = [
 ]
 
 const initialState = {
-    pieces: JSON.parse(JSON.stringify( piecesPosAtTheGameStart )),
+    pieces: _.cloneDeep( piecesPosAtTheGameStart ),
 }
 
 export const updatePiecesState = (state = initialState, action) => {
     switch(action.type){
         case 'INIT_LEGAL_MOVES': {
-            const pieciesSlice = JSON.parse(JSON.stringify(state.pieces))
+            const pieciesSlice = _.cloneDeep(state.pieces)
 
             pieciesSlice.forEach((row) => {
                 row.forEach((value) => {
@@ -32,7 +33,7 @@ export const updatePiecesState = (state = initialState, action) => {
             }
         }
         case 'MOVE_PIECE': {
-            const pieciesSlice = JSON.parse(JSON.stringify(state.pieces))
+            const pieciesSlice = _.cloneDeep(state.pieces)
             break
         }
         case 'INIT_PIECES': {

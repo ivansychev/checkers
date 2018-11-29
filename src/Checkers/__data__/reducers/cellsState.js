@@ -1,4 +1,5 @@
 import Cell from "../../logic/objects/Cell";
+import _ from "lodash";
 
 export const cellsPosAtTheGameStart = [
     [0,1,0,1,0,1,0,1],
@@ -12,7 +13,7 @@ export const cellsPosAtTheGameStart = [
 ]
 
 const initialState = {
-    cells: JSON.parse(JSON.stringify( cellsPosAtTheGameStart ))
+    cells: _.cloneDeep( cellsPosAtTheGameStart )
 }
 
 export const updateCellsState = (state = initialState, action) => {
