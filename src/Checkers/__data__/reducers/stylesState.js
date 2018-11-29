@@ -27,12 +27,10 @@ export const updateStylesState = (state = initialState, action) => {
                 })
             })
 
-            return [
+            return {
                 ...state,
-                {
-                    pieces: pieciesSlice
-                }
-            ]
+                pieces: pieciesSlice
+            }
         }
         default:
             return state

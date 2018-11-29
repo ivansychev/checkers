@@ -7,8 +7,6 @@ import {
     stylesState
 } from './reducers'
 
-import * as a from './actions'
-
 export const store = createStore(
     combineReducers({
         pieceSelection,

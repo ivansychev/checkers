@@ -8,3 +8,13 @@ export const movePiece = (piece) => ({
         piece: piece
     }
 })
+
+export const initPieces = (style) => ({
+    type: 'INIT_PIECES',
+    style: style
+})
+
+export const drawPieces = (CTX) => ({
+    type: 'DRAW_PIECES',
+    ctx: CTX
+})

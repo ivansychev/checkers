@@ -12,52 +12,44 @@ const initialState = {
 export const updatePieceSelection = (state = initialState, action) => {
     switch(action.type){
         case 'UPDATE_SELECTED': {
-            return [
+            return {
                 ...state,
-                {
-                    selected:
-                        {
-                            x: action.data.x,
-                            y: action.data.y
-                        }
-                }
-            ]
+                selected:
+                    {
+                        x: action.data.x,
+                        y: action.data.y
+                    }
+            }
         }
         case 'UPDATE_CLICKED': {
-            return [
+            return {
                 ...state,
-                {
-                    clicked:
-                        {
-                            x: action.data.x,
-                            y: action.data.y
-                        }
-                }
-            ]
+                clicked:
+                    {
+                        x: action.data.x,
+                        y: action.data.y
+                    }
+            }
         }
         case 'SET_CACHE_SELECTED_EQUAL_TO_CACHE_CLICKED': {
-            return [
+            return {
                 ...state,
-                {
-                    selected:
-                        {
-                            x: state.clicked.x,
-                            y: state.clicked.y
-                        }
-                }
-            ]
+                selected:
+                    {
+                        x: state.clicked.x,
+                        y: state.clicked.y
+                    }
+            }
         }
         case 'RESET_SELECTED': {
-            return [
+            return {
                 ...state,
-                {
-                    selected:
-                        {
-                            x: null,
-                            y: null
-                        }
-                }
-            ]
+                selected:
+                    {
+                        x: null,
+                        y: null
+                    }
+            }
         }
         default:
             return state
