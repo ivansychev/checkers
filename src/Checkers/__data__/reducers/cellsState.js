@@ -44,6 +44,26 @@ export const updateCellsState = (state = initialState, action) => {
                     val.drawSelf(action.ctx);
                 })
             })
+            return state
+        }
+
+        case 'UPDATE_CELLS_SIZE': {
+            const { cellSide } = action.style
+            const cellsSlice = _.cloneDeep(state.pieces)
+
+            cellsSlice.forEach((row) => {
+                row.forEach((val, j) => {
+                    val.x = j * cellSide;
+                    val.y = i * cellSide;
+                    val.w = cellSide
+                    val.h = cellSide
+                })
+            })
+
+            return {
+                ...state,
+                cells: cellsSlice
+            }
         }
         default:
             return state

@@ -1,4 +1,21 @@
-import {CACHE, CELL_SIDE, CELLS, COORDS, HALF_CELLS_SIDE, MOUSE, PIECES} from "../store/state";
+import {CACHE, CELL_SIDE, COORDS, HALF_CELLS_SIDE, MOUSE} from "../store/state";
+import { store } from '../../__data__/store'
+
+//----getters----
+
+function getCells() {
+    return store.getState() && store.getState().cellsState
+        ?   store.getState().cellsState
+        :   {}
+}
+
+function getPieces() {
+    return store.getState() && store.getState().piecesState
+        ?   store.getState().piecesState
+        :   {}
+}
+
+//---------------
 
 export function hasCoordsChanged(){
     return (COORDS.x !== CACHE.coords.x || COORDS.y !== CACHE.coords.y)
@@ -14,7 +31,7 @@ export function isMouseOutsideCanvas(){
 
 export function isEmptyCell(x = COORDS.x, y = COORDS.y){
     //TODO substitute for click
-    return !PIECES[y][x];
+    return !getPieces()[y][x];
 }
 
 export function isCacheCoordsInitialized(){
@@ -30,11 +47,11 @@ export function isSelectedDifferentToClicked(){
 }
 
 export function isBlackCell(){
-    return CELLS[CACHE.clicked.y][CACHE.clicked.x].cellType !== 0
+    return getCells()[CACHE.clicked.y][CACHE.clicked.x].cellType !== 0
 }
 
 export function getClickedPiece(){
-    return PIECES[CACHE.clicked.y][CACHE.clicked.x]
+    return getPieces()[CACHE.clicked.y][CACHE.clicked.x]
 }
 
 export function getPieceColor(piece){
@@ -115,6 +132,7 @@ export function resetCacheSelected() {
     CACHE.selected.y = null;
 }
 
+//DEPRECATED
 export function toggleTurn() {
     CACHE.turn = CACHE.turn === 'white' ? 'black' : 'white'
 
@@ -137,21 +155,15 @@ export function resetNewGameButtonState(){
     window.newGameButton.resetState()
 }
 
-export function initLegalMoves() {
-    PIECES.forEach((row) => {
-        row.forEach((value) => {
-            if(value) value.fillLegalMoves()
-        })
-    })
-}
-
+//DEPRECATED
 export function eatPieceIfExists(legalMove){
     if(legalMove.eat && legalMove.eat.x && legalMove.eat.y){
-        PIECES[legalMove.eat.y][legalMove.eat.x]=0
+        getPieces()[legalMove.eat.y][legalMove.eat.x]=0
         CACHE.hasEaten = true
     }
 }
 
+//DEPRECATED
 export function movePiece(piece){
     piece.x = CELL_SIDE * CACHE.clicked.x + HALF_CELLS_SIDE;
     piece.y = CELL_SIDE * CACHE.clicked.y + HALF_CELLS_SIDE;
@@ -159,8 +171,8 @@ export function movePiece(piece){
     piece.cellX = CACHE.clicked.x
     piece.cellY = CACHE.clicked.y
 
-    PIECES[CACHE.selected.y][CACHE.selected.x] = 0;
-    PIECES[CACHE.clicked.y][CACHE.clicked.x] = piece;
+    getPieces()[CACHE.selected.y][CACHE.selected.x] = 0;
+    getPieces()[CACHE.clicked.y][CACHE.clicked.x] = piece;
 }
 
 export function getSideLength(){
@@ -176,8 +188,9 @@ export function getSideLength(){
     if(w >= h) return h;
 }
 
+//DEPRECATED!
 export function updateCellsSize(CELL_SIDE){
-    CELLS.forEach((row, i) => {
+    getCells().forEach((row, i) => {
         row.forEach((val, j) => {
             val.x = j * CELL_SIDE;
             val.y = i * CELL_SIDE;
@@ -187,8 +200,9 @@ export function updateCellsSize(CELL_SIDE){
     })
 }
 
+//DEPRECATED!
 export function updatePiecesSize(CELL_SIDE, RADIUS){
-    PIECES.forEach((row, i) => {
+    getPieces().forEach((row, i) => {
         row.forEach((val, j) => {
             if(val !== 0){
                 val.x = CELL_SIDE * j + HALF_CELLS_SIDE

@@ -16,17 +16,13 @@ export function launchGame(){
 function initGame(){
     drawBoard(CXT)
     drawPieces(CXT)
-    utils.initLegalMoves()
-
-    //---
     store.dispatch(piecesState.initLegalMoves())
 }
 
 function resetGame(){
     resetPieces()
-    console.log(PIECES)
     drawPieces(CXT)
-    utils.initLegalMoves()
+    store.dispatch(piecesState.initLegalMoves())
 }
 
 function startGame(){

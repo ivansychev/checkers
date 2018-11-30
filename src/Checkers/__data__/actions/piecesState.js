@@ -18,3 +18,8 @@ export const drawPieces = (CTX) => ({
     type: 'DRAW_PIECES',
     ctx: CTX
 })
+
+export const updatePiecesSize = (style) => ({
+    type: 'UPDATE_PIECES_SIZE',
+    style: style
+})

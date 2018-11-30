@@ -86,6 +86,8 @@ window.addEventListener('resize', ()=>{
     HALF_CELLS_SIDE = CELL_SIDE/2;
     RADIUS = HALF_CELLS_SIDE*0.8;
     gUtils.updateCanvasSize()
+
+    //--put updateSizes somewhere else
     gUtils.updateCellsSize(CELL_SIDE)
     gUtils.updatePiecesSize(CELL_SIDE, RADIUS)
 })

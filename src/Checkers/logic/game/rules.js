@@ -3,6 +3,8 @@ import * as utils from './utils'
 import { removeSelectedCellAndPiece, socket } from "./game";
 import { makeQueen } from "../objects/Queen";
 import {logCache} from "../../logger/log";
+import {store} from "../../__data__/store";
+import * as piecesState from "../../__data__/actions/piecesState";
 
 export function movePiece(
     x = CACHE.selected.x,
@@ -55,7 +57,7 @@ export function movePiece(
             }
 
             //TODO change logic
-            utils.initLegalMoves()
+            store.dispatch(piecesState.initLegalMoves())
             
             console.log('moved')
             //console.log(JSON.parse(JSON.stringify(PIECES)))
