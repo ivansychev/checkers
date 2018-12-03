@@ -24,3 +24,21 @@ export const CACHE = {
     mouse:{x: 0, y: 0},
     coords:{x: 0, y: 0}
 }
+
+export function getClientGameStateSlice(){
+    return store.getState() && store.getState().clientGameState
+        ?   store.getState().clientGameState
+        :   {}
+}
+
+export function getCellsStateSlice() {
+    return store.getState() && store.getState().cellsState
+        ?   store.getState().cellsState
+        :   {}
+}
+
+export function getPiecesStateSlice() {
+    return store.getState() && store.getState().piecesState
+        ?   store.getState().piecesState
+        :   {}
+}

@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { pieceStyles } from "../store/styles.js"
 import { CACHE } from "../store/state";
 import * as oUtils from './utils'
@@ -32,10 +33,10 @@ export default class Piece{
         ctx.closePath()
     }
 
-    fillLegalMoves(){
+    fillLegalMoves(state = {}){
         this.clearLegalMoves()
-        this.shouldEatPiece()
-        this.shouldMove()
+        this.shouldEatPiece(state)
+        this.shouldMove(state)
     }
 
     clearLegalMoves(){
@@ -56,15 +57,15 @@ export default class Piece{
 
     canEatAgain(x = this.cellX, y = this.cellY){
         this.clearLegalMoves()
-        this.shouldEatPiece(x, y)
+        this.shouldEatPiece({}, x, y)
     }
 
-    shouldEatPiece(x = this.cellX, y = this.cellY){
+    shouldEatPiece(state = {}, x = this.cellX, y = this.cellY){
 
-        if(this.getSide() === CACHE.turn){
+        if(this.getSide() === state.turn){
 
             if(this.getSide() === 'white' && y>1){
-                if(oUtils.canHitToTheRight(x, y, this.getSide()))
+                if(oUtils.canHitToTheRight(x, y, this.getSide(), state))
                     this.legalMoves.push({
                         x: x + 2,
                         y: y - 2,
@@ -74,7 +75,7 @@ export default class Piece{
                         },
                     })
 
-                if(oUtils.canHitToTheLeft(x, y, this.getSide()))
+                if(oUtils.canHitToTheLeft(x, y, this.getSide(), state))
                     this.legalMoves.push({
                         x: x - 2,
                         y: y - 2,
@@ -86,7 +87,7 @@ export default class Piece{
             }
 
             if(this.getSide() === 'black' && y<6){
-                if(oUtils.canHitToTheRight(x, y, this.getSide()))
+                if(oUtils.canHitToTheRight(x, y, this.getSide(), state))
                     this.legalMoves.push({
                         x: x + 2,
                         y: y + 2,
@@ -96,7 +97,7 @@ export default class Piece{
                         },
                     })
 
-                if(oUtils.canHitToTheLeft(x, y, this.getSide()))
+                if(oUtils.canHitToTheLeft(x, y, this.getSide(), state))
                     this.legalMoves.push({
                         x: x - 2,
                         y: y + 2,
@@ -109,26 +110,26 @@ export default class Piece{
         }
     }
 
-    shouldMove(x = this.cellX, y = this.cellY){
+    shouldMove(state = {}, x = this.cellX, y = this.cellY){
 
-        if(CACHE.turn === this.getSide()){
+        if(state.turn === this.getSide()){
 
             if(this.getSide() === 'white' && y>0){
 
-                if(oUtils.canMoveToTheRight(x, y, this.getSide()))
+                if(oUtils.canMoveToTheRight(x, y, this.getSide(), state))
                     this.legalMoves.push({x: x + 1, y: y - 1})
 
-                if(oUtils.canMoveToTheLeft(x, y, this.getSide()))
+                if(oUtils.canMoveToTheLeft(x, y, this.getSide(), state))
                     this.legalMoves.push({x: x - 1, y: y - 1})
 
             }
 
             if(this.getSide() === 'black' && y<7){
 
-                if(oUtils.canMoveToTheRight(x, y, this.getSide()))
+                if(oUtils.canMoveToTheRight(x, y, this.getSide(), state))
                     this.legalMoves.push({x: x + 1, y: y + 1})
 
-                if(oUtils.canMoveToTheLeft(x, y, this.getSide()))
+                if(oUtils.canMoveToTheLeft(x, y, this.getSide(), state))
                     this.legalMoves.push({x: x - 1, y: y + 1})
 
             }
@@ -147,4 +148,7 @@ export default class Piece{
             : this.legalMoves
     }
 
+    getShouldEatFlag(){
+        return _.some(this.legalMoves, (o) => _.has(o, 'eat'))
+    }
 }

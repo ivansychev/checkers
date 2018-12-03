@@ -1,6 +1,5 @@
 import _ from 'lodash'
 import Piece from "../../logic/objects/Piece";
-import {HALF_CELLS_SIDE} from "../../logic/store/state";
 
 const piecesPosAtTheGameStart = [
     [0,2,0,2,0,2,0,2],
@@ -14,22 +13,39 @@ const piecesPosAtTheGameStart = [
 ]
 
 const initialState = {
-    pieces: _.cloneDeep( piecesPosAtTheGameStart ),
+    turn: 'white',
+    shouldEat: false,
+    pieces: _.cloneDeep( piecesPosAtTheGameStart )
 }
 
 export const updatePiecesState = (state = initialState, action) => {
     switch(action.type){
+        case 'TOGGLE_TURN': {
+            return {
+                ...state,
+                turn: state.turn === 'white' ? 'black' : 'white'
+            }
+        }
         case 'INIT_LEGAL_MOVES': {
             const piecesSlice = _.cloneDeep(state.pieces)
 
             piecesSlice.forEach((row) => {
                 row.forEach((value) => {
-                    if (value) value.fillLegalMoves()
+                    if (value) value.fillLegalMoves(state)
                 })
+            })
+
+            const shouldEat = piecesSlice.filter((row) => {
+                row.filter((value) =>
+                     value
+                         ? value.getShouldEatFlag()
+                         : false
+                )
             })
 
             return {
                 ...state,
+                shouldEat: !_.isEmpty(shouldEat),
                 pieces: piecesSlice
             }
         }

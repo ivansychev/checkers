@@ -1,55 +1,53 @@
 import {PIECES, CACHE} from "../store/state";
 import * as gUtils from "../game/utils";
 
-export function canHitToTheRight(x, y, side){
+export function canHitToTheRight(x, y, side, state){
     let rightPiece, afterRightPieceIsEmpty;
     if(side === 'white'){
-        if(x<6) rightPiece = PIECES[y-1][x+1]
+        if(x<6) rightPiece = state.pieces[y-1][x+1]
         if(rightPiece && side !== rightPiece.getSide())
-            afterRightPieceIsEmpty = gUtils.isEmptyCell(x+2, y-2)
+            afterRightPieceIsEmpty = gUtils.isEmptyCell(x+2, y-2, state.pieces)
     }
     if(side === 'black'){
-        if(x<6) rightPiece = PIECES[y+1][x+1]
+        if(x<6) rightPiece = state.pieces[y+1][x+1]
         if(rightPiece && side !== rightPiece.getSide())
-            afterRightPieceIsEmpty = gUtils.isEmptyCell(x+2, y+2)
+            afterRightPieceIsEmpty = gUtils.isEmptyCell(x+2, y+2, state.pieces)
     }
-    if(afterRightPieceIsEmpty) CACHE.shouldEat = true
     return afterRightPieceIsEmpty
 }
 
-export function canHitToTheLeft(x, y, side){
+export function canHitToTheLeft(x, y, side, state){
     let leftPiece, afterLeftPieceIsEmpty;
     if(side === 'white'){
-        if(x>1) leftPiece = PIECES[y-1][x-1]
+        if(x>1) leftPiece = state.pieces[y-1][x-1]
         if(leftPiece && side !== leftPiece.getSide())
-            afterLeftPieceIsEmpty = gUtils.isEmptyCell(x-2, y-2)
+            afterLeftPieceIsEmpty = gUtils.isEmptyCell(x-2, y-2, state.pieces)
 
     }
     if(side === 'black') {
-        if(x>1) leftPiece = PIECES[y+1][x-1]
+        if(x>1) leftPiece = state.pieces[y+1][x-1]
         if(leftPiece && side !== leftPiece.getSide())
-            afterLeftPieceIsEmpty = gUtils.isEmptyCell(x-2, y+2)
+            afterLeftPieceIsEmpty = gUtils.isEmptyCell(x-2, y+2, state.pieces)
 
     }
-    if(afterLeftPieceIsEmpty) CACHE.shouldEat = true
     return afterLeftPieceIsEmpty
 }
 
-export function canMoveToTheRight(x, y, side){
+export function canMoveToTheRight(x, y, side, state){
     let rightPiece;
     if(side === 'white')
-        if(x<7) rightPiece = PIECES[y-1][x+1]
+        if(x<7) rightPiece = state.pieces[y-1][x+1]
     if(side === 'black')
-        if(x<7) rightPiece = PIECES[y+1][x+1]
+        if(x<7) rightPiece = state.pieces[y+1][x+1]
     return rightPiece === 0
 }
 
-export function canMoveToTheLeft(x, y, side){
+export function canMoveToTheLeft(x, y, side, state){
     let leftPiece;
     if(side === 'white')
-        if(x>0) leftPiece = PIECES[y-1][x-1]
+        if(x>0) leftPiece = state.pieces[y-1][x-1]
     if(side === 'black')
-        if(x>0) leftPiece = PIECES[y+1][x-1]
+        if(x>0) leftPiece = state.pieces[y+1][x-1]
     return leftPiece === 0
 }
 

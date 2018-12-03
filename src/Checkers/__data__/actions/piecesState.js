@@ -23,3 +23,7 @@ export const updatePiecesSize = (style) => ({
     type: 'UPDATE_PIECES_SIZE',
     style: style
 })
+
+export const toggleTurn = () => ({
+    type: 'TOGGLE_TURN'
+})

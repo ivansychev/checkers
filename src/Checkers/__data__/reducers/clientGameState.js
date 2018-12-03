@@ -1,18 +1,10 @@
 const initialState = {
     side: null,
-    turn: 'white',
-    shouldEat: false,
     hasEaten: false,
 }
 
 export const updateClientGameState = (state = initialState, action) => {
     switch(action.type){
-        case 'TOGGLE_TURN': {
-            return {
-                ...state,
-                turn: state.turn === 'white' ? 'black' : 'white'
-            }
-        }
         case 'EAT_PIECE': {
             const pieciesSlice = JSON.parse(JSON.stringify(state.pieces))
 
