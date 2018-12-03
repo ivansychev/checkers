@@ -42,3 +42,11 @@ export function getPiecesStateSlice() {
         ?   store.getState().piecesState
         :   {}
 }
+
+export function getCellsState() {
+    return getCellsStateSlice().cells
+}
+
+export function getPiecesState(){
+    return getPiecesStateSlice().pieces
+}

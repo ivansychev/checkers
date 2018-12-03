@@ -1,5 +1,5 @@
 import {CACHE, CELL_SIDE, COORDS, HALF_CELLS_SIDE, MOUSE} from "../store/state";
-import { getCellsStateSlice, getPiecesStateSlice } from '../../__data__/store'
+import { getCellsState, getPiecesState } from '../../__data__/store'
 
 export function hasCoordsChanged(){
     return (COORDS.x !== CACHE.coords.x || COORDS.y !== CACHE.coords.y)
@@ -17,7 +17,7 @@ export function isEmptyCell(x = COORDS.x, y = COORDS.y, state){
 
     return state
         ? state.pieces[y][x]
-        : !getPiecesStateSlice()[y][x];
+        : !getPiecesState()[y][x];
 }
 
 export function isCacheCoordsInitialized(){
@@ -33,11 +33,11 @@ export function isSelectedDifferentToClicked(){
 }
 
 export function isBlackCell(){
-    return getCellsStateSlice()[CACHE.clicked.y][CACHE.clicked.x].cellType !== 0
+    return getCellsState()[CACHE.clicked.y][CACHE.clicked.x].cellType !== 0
 }
 
 export function getClickedPiece(){
-    return getPiecesStateSlice()[CACHE.clicked.y][CACHE.clicked.x]
+    return getPiecesState()[CACHE.clicked.y][CACHE.clicked.x]
 }
 
 export function getPieceColor(piece){
@@ -144,7 +144,7 @@ export function resetNewGameButtonState(){
 //DEPRECATED
 export function eatPieceIfExists(legalMove){
     if(legalMove.eat && legalMove.eat.x && legalMove.eat.y){
-        getPiecesStateSlice()[legalMove.eat.y][legalMove.eat.x]=0
+        getPiecesState()[legalMove.eat.y][legalMove.eat.x]=0
         CACHE.hasEaten = true
     }
 }
@@ -157,8 +157,8 @@ export function movePiece(piece){
     piece.cellX = CACHE.clicked.x
     piece.cellY = CACHE.clicked.y
 
-    getPiecesStateSlice()[CACHE.selected.y][CACHE.selected.x] = 0;
-    getPiecesStateSlice()[CACHE.clicked.y][CACHE.clicked.x] = piece;
+    getPiecesState()[CACHE.selected.y][CACHE.selected.x] = 0;
+    getPiecesState()[CACHE.clicked.y][CACHE.clicked.x] = piece;
 }
 
 export function getSideLength(){
@@ -176,7 +176,7 @@ export function getSideLength(){
 
 //DEPRECATED!
 export function updateCellsSize(CELL_SIDE){
-    getCellsStateSlice().forEach((row, i) => {
+    getCellsState().forEach((row, i) => {
         row.forEach((val, j) => {
             val.x = j * CELL_SIDE;
             val.y = i * CELL_SIDE;
@@ -188,7 +188,7 @@ export function updateCellsSize(CELL_SIDE){
 
 //DEPRECATED!
 export function updatePiecesSize(CELL_SIDE, RADIUS){
-    getPiecesStateSlice().forEach((row, i) => {
+    getPiecesState().forEach((row, i) => {
         row.forEach((val, j) => {
             if(val !== 0){
                 val.x = CELL_SIDE * j + HALF_CELLS_SIDE

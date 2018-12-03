@@ -49,7 +49,7 @@ export const updateCellsState = (state = initialState, action) => {
 
         case 'UPDATE_CELLS_SIZE': {
             const { cellSide } = action.style
-            const cellsSlice = _.cloneDeep(state.pieces)
+            const cellsSlice = _.cloneDeep(state.cells)
 
             cellsSlice.forEach((row) => {
                 row.forEach((val, j) => {
@@ -64,6 +64,30 @@ export const updateCellsState = (state = initialState, action) => {
                 ...state,
                 cells: cellsSlice
             }
+        }
+        case 'SET_HOVERED_CELL': {
+            const { x, y } = action.data
+            const cellsSlice = _.cloneDeep(state.cells)
+
+            cellsSlice[y][x].hovered = true
+
+            return{
+                ...state,
+                cells: cellsSlice
+            }
+
+        }
+        case 'REMOVE_HOVERED_CELL': {
+            const { x, y } = action.data
+            const cellsSlice = _.cloneDeep(state.cells)
+
+            cellsSlice[y][x].hovered = false
+
+            return{
+                ...state,
+                cells: cellsSlice
+            }
+
         }
         default:
             return state

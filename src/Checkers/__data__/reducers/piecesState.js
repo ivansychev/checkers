@@ -102,6 +102,30 @@ export const updatePiecesState = (state = initialState, action) => {
                 pieces: piecesSlice
             }
         }
+        case 'SET_HOVERED_PIECE': {
+            const { x, y } = action.data
+            const piecesSlice = _.cloneDeep(state.pieces)
+
+            piecesSlice[y][x].hovered = true
+
+            return{
+                ...state,
+                pieces: piecesSlice
+            }
+
+        }
+        case 'REMOVE_HOVERED_PIECE': {
+            const { x, y } = action.data
+            const piecesSlice = _.cloneDeep(state.pieces)
+
+            piecesSlice[y][x].hovered = false
+
+            return{
+                ...state,
+                pieces: piecesSlice
+            }
+
+        }
         default:
             return state
     }

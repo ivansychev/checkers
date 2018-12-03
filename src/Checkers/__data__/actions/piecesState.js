@@ -27,3 +27,19 @@ export const updatePiecesSize = (style) => ({
 export const toggleTurn = () => ({
     type: 'TOGGLE_TURN'
 })
+
+export const setHoveredPiece = (x, y) => ({
+    type: 'SET_HOVERED_PIECE',
+    data: {
+        x: x,
+        y: y
+    }
+})
+
+export const removeHoveredPiece = (x, y) => ({
+    type: 'REMOVE_HOVERED_PIECE',
+    data: {
+        x: x,
+        y: y
+    }
+})

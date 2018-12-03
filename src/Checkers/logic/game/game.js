@@ -5,8 +5,8 @@ import {MOUSE, CACHE, COORDS, CELLS, PIECES, resetPieces} from "../store/state";
 import * as utils from "./utils"
 import { movePiece } from "./rules";
 
-import { store } from "../../__data__/store";
-import { piecesState } from "../../__data__/actions"
+import { store, getCellsState, getPiecesState } from "../../__data__/store";
+import { piecesState, cellsState } from "../../__data__/actions"
 
 export function launchGame(){
     initGame()
@@ -113,12 +113,12 @@ function setHoveredCell(){
     if(utils.hasMouseMoved())
         if(utils.hasCoordsChanged())
         {
-            const cell = CELLS[COORDS.y][COORDS.x];
-            if(cell) cell.hovered = true
+            if(getCellsState()[COORDS.y][COORDS.x])
+                store.dispatch(cellsState.setHoveredCell(COORDS.x, COORDS.y))
 
             if(utils.isCacheCoordsInitialized()){
-                const cacheCell = CELLS[CACHE.coords.y][CACHE.coords.x];
-                if(cacheCell) cacheCell.hovered = false
+                if(getCellsState()[CACHE.coords.y][CACHE.coords.x])
+                    store.dispatch(cellsState.removeHoveredCell(CACHE.coords.x, CACHE.coords.y))
             }
         }
 }
@@ -127,15 +127,15 @@ function setHoveredPiece(){
     if(utils.hasMouseMoved())
         if(utils.hasCoordsChanged())
         {
-            const piece = PIECES[COORDS.y][COORDS.x];
-            if(piece !== 0){
-                piece.hovered = true
+            if(getPiecesState()[COORDS.y][COORDS.x] !== 0){
+                store.dispatch(piecesState.setHoveredPiece(COORDS.x, COORDS.y))
             }
 
+            console.log(CACHE)
+
             if(utils.isCacheCoordsInitialized()){
-                const cachePiece = PIECES[CACHE.coords.y][CACHE.coords.x];
-                if(cachePiece !== 0){
-                    cachePiece.hovered = false
+                if(getPiecesState()[CACHE.coords.y][CACHE.coords.x] !== 0){
+                    store.dispatch(piecesState.removeHoveredPiece(CACHE.coords.x, CACHE.coords.y))
                 }
             }
         }
