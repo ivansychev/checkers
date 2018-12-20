@@ -89,6 +89,30 @@ export const updateCellsState = (state = initialState, action) => {
             }
 
         }
+        case 'SET_SELECTED_CELL': {
+            const { x, y } = action.data
+            const cellsSlice = _.cloneDeep(state.cells)
+
+            cellsSlice[y][x].selected = true
+
+            return{
+                ...state,
+                cells: cellsSlice
+            }
+
+        }
+        case 'REMOVE_SELECTED_CELL': {
+            const { x, y } = action.data
+            const cellsSlice = _.cloneDeep(state.cells)
+
+            cellsSlice[y][x].selected = false
+
+            return{
+                ...state,
+                cells: cellsSlice
+            }
+
+        }
         default:
             return state
     }

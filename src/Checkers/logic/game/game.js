@@ -62,7 +62,7 @@ export function pieceSelectionRoutine(){
 
 function removeMovingOptions(){
     if(utils.isCacheSelectedInitialized()) {
-        const piece = PIECES[CACHE.selected.y][CACHE.selected.x];
+        const piece = getPiecesState()[CACHE.selected.y][CACHE.selected.x];
         piece.getMovingOptions().forEach((value)=>{
             const cell = CELLS[value.y][value.x];
             cell.selected = false
@@ -80,8 +80,7 @@ function setMovingOptions(){
 
 function removeSelectedCell(){
     if(utils.isCacheSelectedInitialized()){
-        const cell = CELLS[CACHE.selected.y][CACHE.selected.x];
-        cell.selected = false
+        store.dispatch(cellsState.removeSelectedCell(CACHE.selected.x, CACHE.selected.y))
     }
 }
 
@@ -95,8 +94,7 @@ function removeSelectedPiece(){
 }
 
 function setSelectedCell(){
-    const cell = CELLS[COORDS.y][COORDS.x];
-    cell.selected = true
+    store.dispatch(cellsState.removeSelectedCell(COORDS.x, COORDS.y))
 }
 
 function setSelectedPiece(){
@@ -130,8 +128,6 @@ function setHoveredPiece(){
             if(getPiecesState()[COORDS.y][COORDS.x] !== 0){
                 store.dispatch(piecesState.setHoveredPiece(COORDS.x, COORDS.y))
             }
-
-            console.log(CACHE)
 
             if(utils.isCacheCoordsInitialized()){
                 if(getPiecesState()[CACHE.coords.y][CACHE.coords.x] !== 0){

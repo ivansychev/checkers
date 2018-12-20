@@ -50,3 +50,13 @@ export function getCellsState() {
 export function getPiecesState(){
     return getPiecesStateSlice().pieces
 }
+
+export function getTurnState(){
+    return getPiecesStateSlice().turn
+}
+
+export function getPieceSelectionSlice(){
+    return store.getState() && store.getState().pieceSelection
+        ?   store.getState().pieceSelection
+        :   {}
+}

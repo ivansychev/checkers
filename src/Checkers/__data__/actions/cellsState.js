@@ -28,3 +28,19 @@ export const removeHoveredCell = (x, y) => ({
         y: y
     }
 })
+
+export const setSelectedCell = (x, y) => ({
+    type: 'SET_SELECTED_CELL',
+    data: {
+        x: x,
+        y: y
+    }
+})
+
+export const removeSelectedCell = (x, y) => ({
+    type: 'REMOVE_SELECTED_CELL',
+    data: {
+        x: x,
+        y: y
+    }
+})

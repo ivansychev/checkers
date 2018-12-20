@@ -1,5 +1,11 @@
 import {CACHE, CELL_SIDE, COORDS, HALF_CELLS_SIDE, MOUSE} from "../store/state";
-import { getCellsState, getPiecesState } from '../../__data__/store'
+import {
+    getCellsState,
+    getClientGameStateSlice,
+    getPieceSelectionSlice,
+    getPiecesState,
+    getTurnState
+} from '../../__data__/store'
 
 export function hasCoordsChanged(){
     return (COORDS.x !== CACHE.coords.x || COORDS.y !== CACHE.coords.y)
@@ -25,7 +31,8 @@ export function isCacheCoordsInitialized(){
 }
 
 export function isCacheSelectedInitialized(){
-    return (CACHE.selected.y !== null && CACHE.selected.x !== null);
+    const { x, y } = getPieceSelectionSlice().selected
+    return (y !== null && x !== null);
 }
 
 export function isSelectedDifferentToClicked(){
@@ -33,11 +40,13 @@ export function isSelectedDifferentToClicked(){
 }
 
 export function isBlackCell(){
-    return getCellsState()[CACHE.clicked.y][CACHE.clicked.x].cellType !== 0
+    const { x, y } = getPieceSelectionSlice().clicked
+    return getCellsState()[y][x].cellType !== 0
 }
 
 export function getClickedPiece(){
-    return getPiecesState()[CACHE.clicked.y][CACHE.clicked.x]
+    const { x, y } = getPieceSelectionSlice().clicked
+    return getPiecesState()[y][x]
 }
 
 export function getPieceColor(piece){
@@ -49,11 +58,11 @@ export function getPieceColor(piece){
 }
 
 export function getTurnColor(){
-    return CACHE.turn
+    return getTurnState()
 }
 
 export function getPlayersSide(){
-    return CACHE.side
+    return getClientGameStateSlice().side
 }
 
 export function isPlayersPiece(){
