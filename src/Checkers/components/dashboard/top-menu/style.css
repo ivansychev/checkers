@@ -1,0 +1,32 @@
+.container{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background: #3f4359;
+
+}
+
+.subcontainer{
+  display: flex;
+    & .creds{
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      &:hover{
+        background: #656c8f;
+      }
+      & .user_name{
+        padding: 0px 15px;
+      }
+    }
+    & .options{
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      padding: 0px 15px;
+
+      &:hover{
+        background: #656c8f;
+      }
+    }
+}
