@@ -1,0 +1,11 @@
+.options{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0px 15px;
+
+  &:hover{
+    background: #656c8f;
+  }
+}
+

@@ -41,6 +41,7 @@ module.exports = {
                         "@babel/react"
                     ],
                     plugins: [
+                        ['@babel/plugin-proposal-class-properties', { "loose": true }],
                         "react-hot-loader/babel"
                     ]
                 }

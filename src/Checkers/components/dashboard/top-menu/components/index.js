@@ -1,5 +1,7 @@
-import { Avatar } from "./avatar.jsx";
+import { Avatar } from "./avatar";
+import { Nav } from "./navs";
 
 export {
-    Avatar
+    Avatar,
+    Nav
 }
