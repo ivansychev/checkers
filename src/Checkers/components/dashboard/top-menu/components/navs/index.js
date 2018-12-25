@@ -1,5 +1,5 @@
-import {Nav} from './Nav.jsx'
+import {NavButton} from './NavButton.jsx'
 
 export {
-    Nav
+    NavButton
 }

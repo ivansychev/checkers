@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 
 import style from './style.css';
-import {Avatar, Nav} from "./components";
-import { Message, Check } from "../../../../icons";
+import {Avatar, NavButton} from "./components";
+import { Message, Check, Circle } from "../../../../icons";
 
 export default class TopMenu extends Component{
     render(){
         return(
             <div className={style.container}>
                 <div className={style.subcontainer}>
-                    <Nav
-                        svgArr={[<Message key={1}/>, <Check key={2}/>]}
-                        options={['Начать зановоб', 'Принято']}
+                    <NavButton
+                        svgArr={[
+                            <Circle key={0}/>,
+                            <Message key={1}/>,
+                            <Check key={2}/>]}
+                        options={['Заново', 'Обработка', 'Принято']}
                     />
                 </div>
                 <div className={style.subcontainer}>

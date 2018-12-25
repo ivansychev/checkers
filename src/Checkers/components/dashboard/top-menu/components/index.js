@@ -1,7 +1,7 @@
 import { Avatar } from "./avatar";
-import { Nav } from "./navs";
+import { NavButton } from "./navs";
 
 export {
     Avatar,
-    Nav
+    NavButton
 }
