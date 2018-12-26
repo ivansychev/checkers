@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import style from './style.css';
 import {Avatar, NavButton} from "./components";
-import { CircledArrow, Check, Circle } from "../../../../icons";
+import {CircledArrow, Check, Circle, Cross, Warning} from "../../../../icons";
 
 export default class TopMenu extends Component{
     render(){
@@ -13,8 +13,17 @@ export default class TopMenu extends Component{
                         svgArr={[
                             <Circle key={0}/>,
                             <CircledArrow key={1}/>,
-                            <Check key={2}/>]}
-                        options={['Начать заново', 'Ждем ответа', 'Принято']}
+                            <Check key={2}/>,
+                            <Cross key={3}/>]}
+                        options={['Начать заново', 'Ждем ответа', 'Начало новой игры', 'Отклонено']}
+                    />
+                    <NavButton
+                        svgArr={[
+                            <Circle key={0}/>,
+                            <Warning key={1}/>,
+                            <Check key={2}/>,
+                            <Cross key={3}/>]}
+                        options={['Сдаться', 'Завершение игры', 'Игра завершена', 'Ошибка']}
                     />
                 </div>
                 <div className={style.subcontainer}>

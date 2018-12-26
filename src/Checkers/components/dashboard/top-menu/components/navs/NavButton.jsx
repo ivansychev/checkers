@@ -17,7 +17,8 @@ export class NavButton extends React.Component{
 
     state = {
         loading: false,
-        done: false
+        done: false,
+        error: false
     }
 
     handleClick = () => {
@@ -25,20 +26,39 @@ export class NavButton extends React.Component{
             loading: true
         })
 
-        setTimeout(()=>{
-            this.setState({
-                loading: false,
-                done: true
-            })
-
+        if(Math.random() > .5){
             setTimeout(()=>{
                 this.setState({
                     loading: false,
-                    done: false
+                    done: true
                 })
-            }, 1500)
 
-        }, 3000)
+                setTimeout(()=>{
+                    this.setState({
+                        loading: false,
+                        done: false
+                    })
+                }, 1500)
+
+            }, 3000)
+        }
+        else{
+            setTimeout(()=>{
+                this.setState({
+                    loading: false,
+                    error: true
+                })
+
+                setTimeout(()=>{
+                    this.setState({
+                        loading: false,
+                        error: false
+                    })
+                }, 1500)
+
+            }, 3000)
+        }
+
 
     }
 
@@ -50,6 +70,7 @@ export class NavButton extends React.Component{
                 className={classNames(
                     style.options,
                     this.state.done ? style.done : '',
+                    this.state.error ? style.error : '',
                 )}
                 onClick={this.handleClick}
             >
@@ -57,6 +78,7 @@ export class NavButton extends React.Component{
                     style.navButton,
                     this.state.loading ? style.loading : '',
                     this.state.done ? style.done : '',
+                    this.state.error ? style.error : '',
                 )}>
                     <span>
                         {svgArr}

@@ -2,17 +2,6 @@
   width: 1em;
   height: 1em;
 
-  & path,
-  & polygon,
-  & rect {
-    fill: #4691f6;
-  }
-
-  & circle {
-    stroke: #4691f6;
-    stroke-width: 1;
-  }
-
 }
 
 .message {
@@ -52,15 +41,17 @@
   width: 1em;
   height: 1em;
 
-  & path,
-  & polygon,
-  & rect {
-    fill: #4691f6;
-  }
 
-  & circle {
-    stroke: #4691f6;
-    stroke-width: 1;
-  }
+}
+
+.cross {
+  width: 1em;
+  height: 1em;
+
+}
+
+.warning {
+  width: 1em;
+  height: 1em;
 
 }
