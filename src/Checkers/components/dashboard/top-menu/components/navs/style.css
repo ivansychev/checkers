@@ -5,16 +5,25 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  padding: 0px 15px;
+  padding: 0px 20px;
 
   &:hover{
     background: #656c8f;
   }
+
+  &.done {
+    background: navs_success;
+
+    &:hover{
+      background: navs_success;
+    }
+
+  }
+
 }
 
 .navButton {
   display: table;
-  background: navs_background;
   line-height: 20px;
   color: #fff;
   cursor: pointer;
@@ -36,7 +45,6 @@
       width: 100%;
       height: 100%;
       position: absolute;
-      background: navs_background;
       border-radius: 50%;
       transform: scale(0);
       transition: transform .3s ease, background .3s ease;
@@ -73,7 +81,6 @@
     }
   }
   &:hover {
-    box-shadow: 0 8px 24px rgba(navs_background, .15);
     span {
       svg {
         &:nth-child(2) {
@@ -111,7 +118,6 @@
   }
   &.done {
     background: navs_success;
-    box-shadow: 0 4px 20px rgba(navs_success, .15);
     span {
       background: #fff;
       transition: background .1s ease 0s;
@@ -143,7 +149,7 @@
     margin: 0;
     list-style: none;
     height: 20px;
-    width: 70px;
+    width: 120px;
     display: inline-block;
     vertical-align: top;
     text-align: center;

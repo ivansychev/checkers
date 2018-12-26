@@ -36,9 +36,9 @@ export class NavButton extends React.Component{
                     loading: false,
                     done: false
                 })
-            }, 1000)
+            }, 1500)
 
-        }, 1000)
+        }, 3000)
 
     }
 
@@ -47,7 +47,10 @@ export class NavButton extends React.Component{
 
         return(
             <div
-                className={style.options}
+                className={classNames(
+                    style.options,
+                    this.state.done ? style.done : '',
+                )}
                 onClick={this.handleClick}
             >
                 <a className={classNames(

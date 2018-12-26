@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import style from './style.css';
 import {Avatar, NavButton} from "./components";
-import { Message, Check, Circle } from "../../../../icons";
+import { CircledArrow, Check, Circle } from "../../../../icons";
 
 export default class TopMenu extends Component{
     render(){
@@ -12,9 +12,9 @@ export default class TopMenu extends Component{
                     <NavButton
                         svgArr={[
                             <Circle key={0}/>,
-                            <Message key={1}/>,
+                            <CircledArrow key={1}/>,
                             <Check key={2}/>]}
-                        options={['Заново', 'Обработка', 'Принято']}
+                        options={['Начать заново', 'Ждем ответа', 'Принято']}
                     />
                 </div>
                 <div className={style.subcontainer}>

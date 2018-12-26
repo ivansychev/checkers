@@ -47,3 +47,20 @@
   }
 
 }
+
+.circledArrow {
+  width: 1em;
+  height: 1em;
+
+  & path,
+  & polygon,
+  & rect {
+    fill: #4691f6;
+  }
+
+  & circle {
+    stroke: #4691f6;
+    stroke-width: 1;
+  }
+
+}
